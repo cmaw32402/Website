@@ -9,98 +9,92 @@
 </head>
 <body>
   <main class="page">
-    <header class="intro">
+    <header class="site-header">
       <h1>Your Name</h1>
-
-      <!-- Links to separate pages; their contents are not shown on the homepage. -->
+      <!-- Main navigation opens separate pages. -->
       <nav class="site-nav" aria-label="Main navigation">
-        <a href="index.html" aria-current="page">Home</a>
+        <a href="index.html" aria-current="page">About Me</a>
         <a href="research.html">Research &amp; Publications</a>
         <a href="projects.html">Course Projects</a>
         <a href="cv.html">CV</a>
       </nav>
     </header>
 
-    <section class="home-layout" aria-label="About me">
+    <!-- Photo at left, education / experience at right. -->
+    <section class="home-layout" aria-label="Background">
       <div class="profile-column">
-        <!-- This image is already in your GitHub website_images folder. -->
+        <!-- Keep IMG_9210.jpeg inside the website_images folder on GitHub. -->
         <img class="profile-photo" src="website_images/IMG_9210.jpeg" alt="Portrait of Your Name">
       </div>
 
       <div class="details-column">
-        <!-- These are interactive tabs on the homepage, not hyperlinks. -->
-        <div class="tab-list" role="tablist" aria-label="Background">
-          <button class="tab-button" id="education-tab" type="button"
-                  role="tab" aria-selected="true" aria-controls="education-panel"
-                  tabindex="0">Education</button>
-          <button class="tab-button" id="experience-tab" type="button"
-                  role="tab" aria-selected="false" aria-controls="experience-panel"
-                  tabindex="-1">Experience</button>
+        <!-- These switch content right here; they do not open another page. -->
+        <div class="tab-list" role="tablist" aria-label="Background sections">
+          <button class="tab-button" id="education-tab" type="button" role="tab"
+                  aria-selected="true" aria-controls="education-panel" tabindex="0">Education</button>
+          <button class="tab-button" id="experience-tab" type="button" role="tab"
+                  aria-selected="false" aria-controls="experience-panel" tabindex="-1">Experience</button>
         </div>
 
-        <section class="tab-panel" id="education-panel" role="tabpanel"
-                 aria-labelledby="education-tab" tabindex="0">
-          <!-- Duplicate an article.entry for each school or degree. -->
-          <article class="entry">
-            <div class="entry-heading">
-              <div>
-                <h2 class="entry-title placeholder">[University]</h2>
-                <p class="entry-meta placeholder">[Degree / Field of study]</p>
-              </div>
-              <span class="entry-date placeholder">[Dates]</span>
-            </div>
-          </article>
-        </section>
+        <div class="tab-panel" id="education-panel" role="tabpanel"
+             aria-labelledby="education-tab" tabindex="0">
+          <!-- Duplicate a detail-item for each degree. -->
+          <div class="detail-item">
+            <h2 class="detail-title placeholder">[University]</h2>
+            <p class="detail-subtitle placeholder">[Degree / Field of study]</p>
+            <p class="detail-subtitle placeholder">[Department / Lab, optional]</p>
+          </div>
+          <div class="detail-item">
+            <h2 class="detail-title placeholder">[University]</h2>
+            <p class="detail-subtitle placeholder">[Degree / Field of study]</p>
+          </div>
+        </div>
 
-        <section class="tab-panel" id="experience-panel" role="tabpanel"
-                 aria-labelledby="experience-tab" tabindex="0" hidden>
-          <!-- Duplicate an article.entry for each role or position. -->
-          <article class="entry">
-            <div class="entry-heading">
-              <div>
-                <h2 class="entry-title placeholder">[Position / Organization]</h2>
-                <p class="entry-meta placeholder">[Role / Area]</p>
-              </div>
-              <span class="entry-date placeholder">[Dates]</span>
-            </div>
-            <p class="entry-description placeholder">[Brief description of the experience.]</p>
-          </article>
-        </section>
+        <div class="tab-panel" id="experience-panel" role="tabpanel"
+             aria-labelledby="experience-tab" tabindex="0" hidden>
+          <!-- Duplicate a detail-item for each position. -->
+          <div class="detail-item">
+            <h2 class="detail-title placeholder">[Position / Organization]</h2>
+            <p class="detail-subtitle placeholder">[Role / Research area]</p>
+            <p class="detail-subtitle placeholder">[Dates]</p>
+          </div>
+          <div class="detail-item">
+            <h2 class="detail-title placeholder">[Position / Organization]</h2>
+            <p class="detail-subtitle placeholder">[Role / Research area]</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <p class="intro-text placeholder">[A short introduction about yourself and your research interests.]</p>
-
-    <!-- Optional profile links: replace # with your real URLs when ready. -->
-    <nav class="profile-links" aria-label="Profile links">
-      <span class="placeholder">[Email / Google Scholar / GitHub]</span>
-    </nav>
+    <section class="about-section" aria-labelledby="about-heading">
+      <h2 id="about-heading">About Me</h2>
+      <p class="placeholder">[A short introduction about yourself, your academic background, and your research interests.]</p>
+      <p class="placeholder">[An optional second paragraph about your current work or research goals.]</p>
+    </section>
   </main>
 
   <script>
-    // Switch Education / Experience in place, without loading another page.
     const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
 
     function activateTab(selectedTab) {
       tabs.forEach((tab) => {
-        const selected = tab === selectedTab;
-        tab.setAttribute('aria-selected', String(selected));
-        tab.tabIndex = selected ? 0 : -1;
-        document.getElementById(tab.getAttribute('aria-controls')).hidden = !selected;
+        const active = tab === selectedTab;
+        tab.setAttribute('aria-selected', String(active));
+        tab.tabIndex = active ? 0 : -1;
+        document.getElementById(tab.getAttribute('aria-controls')).hidden = !active;
       });
     }
 
     tabs.forEach((tab, index) => {
       tab.addEventListener('click', () => activateTab(tab));
       tab.addEventListener('keydown', (event) => {
-        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight' &&
-            event.key !== 'Home' && event.key !== 'End') return;
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
         event.preventDefault();
-        const nextIndex = event.key === 'Home' ? 0
+        const next = event.key === 'Home' ? 0
           : event.key === 'End' ? tabs.length - 1
           : (index + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
-        activateTab(tabs[nextIndex]);
-        tabs[nextIndex].focus();
+        activateTab(tabs[next]);
+        tabs[next].focus();
       });
     });
   </script>
