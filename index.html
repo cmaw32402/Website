@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,87 +9,100 @@
 </head>
 <body>
   <main class="page">
-    <!-- INTRODUCTION: Replace the placeholders with your own information. -->
     <header class="intro">
       <h1>Your Name</h1>
-      <p class="intro-text placeholder">[A short introduction about yourself and your research interests.]</p>
 
-      <!-- Add your own links by replacing # with the appropriate URLs. -->
-      <!-- Example: <a href="mailto:you@example.com">Email</a> -->
-      <nav class="profile-links" aria-label="Profile links">
-        <span class="placeholder">[Email / Google Scholar / GitHub / CV]</span>
+      <!-- Links to separate pages; their contents are not shown on the homepage. -->
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="research.html">Research &amp; Publications</a>
+        <a href="projects.html">Course Projects</a>
+        <a href="cv.html">CV</a>
       </nav>
     </header>
 
-    <section class="section" id="research">
-      <h2>Research &amp; Publications</h2>
-      <!-- Duplicate an article.entry for each publication or research project. -->
-      <article class="entry">
-        <h3 class="entry-title placeholder">[Publication or research project title]</h3>
-        <p class="entry-meta placeholder">[Authors &middot; Venue &middot; Year]</p>
-        <p class="entry-description placeholder">[Brief description of the work.]</p>
-      </article>
-    </section>
+    <section class="home-layout" aria-label="About me">
+      <div class="profile-column">
+        <!-- This image is already in your GitHub website_images folder. -->
+        <img class="profile-photo" src="website_images/IMG_9210.jpeg" alt="Portrait of Your Name">
+      </div>
 
-    <section class="section" id="internships">
-      <h2>Internships</h2>
-      <!-- Duplicate an article.entry for each internship. -->
-      <article class="entry">
-        <div class="entry-heading">
-          <h3 class="entry-title placeholder">[Position / Organization]</h3>
-          <span class="entry-date placeholder">[Dates]</span>
+      <div class="details-column">
+        <!-- These are interactive tabs on the homepage, not hyperlinks. -->
+        <div class="tab-list" role="tablist" aria-label="Background">
+          <button class="tab-button" id="education-tab" type="button"
+                  role="tab" aria-selected="true" aria-controls="education-panel"
+                  tabindex="0">Education</button>
+          <button class="tab-button" id="experience-tab" type="button"
+                  role="tab" aria-selected="false" aria-controls="experience-panel"
+                  tabindex="-1">Experience</button>
         </div>
-        <p class="entry-description placeholder">[Brief description of the role.]</p>
-      </article>
+
+        <section class="tab-panel" id="education-panel" role="tabpanel"
+                 aria-labelledby="education-tab" tabindex="0">
+          <!-- Duplicate an article.entry for each school or degree. -->
+          <article class="entry">
+            <div class="entry-heading">
+              <div>
+                <h2 class="entry-title placeholder">[University]</h2>
+                <p class="entry-meta placeholder">[Degree / Field of study]</p>
+              </div>
+              <span class="entry-date placeholder">[Dates]</span>
+            </div>
+          </article>
+        </section>
+
+        <section class="tab-panel" id="experience-panel" role="tabpanel"
+                 aria-labelledby="experience-tab" tabindex="0" hidden>
+          <!-- Duplicate an article.entry for each role or position. -->
+          <article class="entry">
+            <div class="entry-heading">
+              <div>
+                <h2 class="entry-title placeholder">[Position / Organization]</h2>
+                <p class="entry-meta placeholder">[Role / Area]</p>
+              </div>
+              <span class="entry-date placeholder">[Dates]</span>
+            </div>
+            <p class="entry-description placeholder">[Brief description of the experience.]</p>
+          </article>
+        </section>
+      </div>
     </section>
 
-    <section class="section" id="projects">
-      <h2>Course Projects</h2>
+    <p class="intro-text placeholder">[A short introduction about yourself and your research interests.]</p>
 
-      <h3>Current Projects</h3>
-      <!-- Duplicate an article.entry for each current project. -->
-      <article class="entry">
-        <h3 class="entry-title placeholder">[Project title]</h3>
-        <p class="entry-meta placeholder">[Course / Institution]</p>
-        <p class="entry-description placeholder">[Brief description of the project.]</p>
-      </article>
-
-      <h3>Past Projects</h3>
-      <!-- Duplicate an article.entry for each past project. -->
-      <article class="entry">
-        <h3 class="entry-title placeholder">[Project title]</h3>
-        <p class="entry-meta placeholder">[Course / Institution]</p>
-        <p class="entry-description placeholder">[Brief description of the project.]</p>
-      </article>
-    </section>
-
-    <section class="section" id="education">
-      <h2>Education</h2>
-      <!-- Duplicate an article.entry for each school or degree. -->
-      <article class="entry">
-        <div class="entry-heading">
-          <div>
-            <h3 class="entry-title placeholder">[University]</h3>
-            <p class="entry-meta placeholder">[Degree / Field of study]</p>
-          </div>
-          <span class="entry-date placeholder">[Dates]</span>
-        </div>
-      </article>
-    </section>
-
-    <section class="section" id="teaching">
-      <h2>Teaching Experience</h2>
-      <!-- Duplicate an article.entry for each teaching position. -->
-      <article class="entry">
-        <div class="entry-heading">
-          <div>
-            <h3 class="entry-title placeholder">[Teaching position]</h3>
-            <p class="entry-meta placeholder">[Institution / Course]</p>
-          </div>
-          <span class="entry-date placeholder">[Dates]</span>
-        </div>
-      </article>
-    </section>
+    <!-- Optional profile links: replace # with your real URLs when ready. -->
+    <nav class="profile-links" aria-label="Profile links">
+      <span class="placeholder">[Email / Google Scholar / GitHub]</span>
+    </nav>
   </main>
+
+  <script>
+    // Switch Education / Experience in place, without loading another page.
+    const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+
+    function activateTab(selectedTab) {
+      tabs.forEach((tab) => {
+        const selected = tab === selectedTab;
+        tab.setAttribute('aria-selected', String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+        document.getElementById(tab.getAttribute('aria-controls')).hidden = !selected;
+      });
+    }
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activateTab(tab));
+      tab.addEventListener('keydown', (event) => {
+        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight' &&
+            event.key !== 'Home' && event.key !== 'End') return;
+        event.preventDefault();
+        const nextIndex = event.key === 'Home' ? 0
+          : event.key === 'End' ? tabs.length - 1
+          : (index + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+        activateTab(tabs[nextIndex]);
+        tabs[nextIndex].focus();
+      });
+    });
+  </script>
 </body>
 </html>
