@@ -41,7 +41,7 @@ a.text-link:hover { color: var(--accent); }
 .affil { display: flex; flex-direction: column; align-items: center; gap: 0; min-width: 0; text-align: center; font-size: 14px; line-height: 1.35; }
 .affil img { display: block; width: 100%; max-width: 142px; height: 80px; margin-bottom: 9px; object-fit: contain; }
 .affil-name { display: block; min-height: 3.9em; }
-.affil-dates { display: block; color: var(--muted); font: inherit; font-size: 8px; line-height: inherit; }
+.affil-dates { display: block; color: var(--muted); font: inherit; font-size: 6px; line-height: inherit; }
 
 ul.plain { margin: 0 0 14px; padding-left: 18px; }
 ul.plain li { margin-bottom: 6px; }
