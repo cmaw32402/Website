@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Christian Marowski — computer science graduate student and multi-robot systems researcher">
+  <meta name="description" content="Personal academic portfolio">
   <title>Christian Marowski</title>
   <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-  <main class="page home-page">
+  <main class="page">
     <header class="site-header">
       <h1>Christian Marowski</h1>
+      <!-- Main navigation opens separate pages. -->
       <nav class="site-nav" aria-label="Main navigation">
         <a href="index.html" aria-current="page">About Me</a>
         <a href="research.html">Research &amp; Publications</a>
@@ -19,14 +20,10 @@
       </nav>
     </header>
 
-    <section class="home-layout" aria-label="Education and experience">
-      <!-- Portrait on the left, as in the reference layout. -->
-      <div class="profile-column">
-        <img class="profile-photo" src="website_images/IMG_9210.jpeg"
-             alt="Portrait of Christian Marowski">
-      </div>
-
+    <!-- Education and experience on the left, smaller photo on the right. -->
+    <section class="home-layout" aria-label="Background">
       <div class="details-column">
+        <!-- These switch content right here; they do not open another page. -->
         <div class="tab-list" role="tablist" aria-label="Background sections">
           <button class="tab-button" id="education-tab" type="button" role="tab"
                   aria-selected="true" aria-controls="education-panel" tabindex="0">Education</button>
@@ -36,57 +33,49 @@
 
         <div class="tab-panel" id="education-panel" role="tabpanel"
              aria-labelledby="education-tab" tabindex="0">
+          <!-- Duplicate a detail-item for each degree. -->
           <div class="detail-item">
-            <h2 class="detail-title">Indiana University</h2>
-            <p class="detail-subtitle">M.S. in Computer Science</p>
-            <p class="detail-date">August 2025 – May 2027</p>
+            <h2 class="detail-title placeholder">[University]</h2>
+            <p class="detail-subtitle placeholder">[Degree / Field of study]</p>
+            <p class="detail-subtitle placeholder">[Department / Lab, optional]</p>
           </div>
           <div class="detail-item">
-            <h2 class="detail-title">Marquette University</h2>
-            <p class="detail-subtitle">B.S. in Computer Science and Cognitive Science</p>
-            <p class="detail-date">December 2024</p>
+            <h2 class="detail-title placeholder">[University]</h2>
+            <p class="detail-subtitle placeholder">[Degree / Field of study]</p>
           </div>
         </div>
 
         <div class="tab-panel" id="experience-panel" role="tabpanel"
              aria-labelledby="experience-tab" tabindex="0" hidden>
+          <!-- Duplicate a detail-item for each position. -->
           <div class="detail-item">
-            <h2 class="detail-title">Research Assistant · SMART Lab</h2>
-            <p class="detail-subtitle">Indiana University · Dr. Byung-Cheol Min</p>
-            <p class="detail-date">May 2026 – Present</p>
+            <h2 class="detail-title placeholder">[Position / Organization]</h2>
+            <p class="detail-subtitle placeholder">[Role / Research area]</p>
+            <p class="detail-subtitle placeholder">[Dates]</p>
           </div>
           <div class="detail-item">
-            <h2 class="detail-title">Optimization Team Member · LART</h2>
-            <p class="detail-subtitle">Indiana University · Dr. Lantao Liu and Hassan Jardali</p>
-            <p class="detail-date">November 2025 – Present</p>
-          </div>
-          <div class="detail-item">
-            <h2 class="detail-title">Data Research Contractor</h2>
-            <p class="detail-subtitle">Wisconsin Department of Public Instruction · Milwaukee, WI</p>
-            <p class="detail-date">August 2025 – January 2026</p>
-          </div>
-          <div class="detail-item">
-            <h2 class="detail-title">Head Teaching Assistant · Operating Systems</h2>
-            <p class="detail-subtitle">Marquette University · Dr. Dennis Brylow</p>
-            <p class="detail-date">January 2025 – May 2025</p>
-          </div>
-          <div class="detail-item">
-            <h2 class="detail-title">Research Assistant · PISCES</h2>
-            <p class="detail-subtitle">Marquette University · Dr. Dennis Brylow</p>
-            <p class="detail-date">Summer 2024 – August 2025</p>
+            <h2 class="detail-title placeholder">[Position / Organization]</h2>
+            <p class="detail-subtitle placeholder">[Role / Research area]</p>
           </div>
         </div>
+      </div>
+
+      <div class="profile-column">
+        <!-- Keep IMG_9210.jpeg inside the website_images folder on GitHub. -->
+        <img class="profile-photo" src="website_images/IMG_9210.jpeg" alt="Portrait of Christian Marowski">
       </div>
     </section>
 
     <section class="about-section" aria-labelledby="about-heading">
       <h2 id="about-heading">About Me</h2>
-      <p>I'm a master's student in Computer Science at Indiana University, where I work in the SMART Lab on multi-robot coordination. My interests include classical and learning-based control, graph neural networks, and multi-agent reinforcement learning for cooperative robot systems.</p>
+      <p class="placeholder">[A short introduction about yourself, your academic background, and your research interests.]</p>
+      <p class="placeholder">[An optional second paragraph about your current work or research goals.]</p>
     </section>
   </main>
 
   <script>
     const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+
     function activateTab(selectedTab) {
       tabs.forEach((tab) => {
         const active = tab === selectedTab;
@@ -95,6 +84,7 @@
         document.getElementById(tab.getAttribute('aria-controls')).hidden = !active;
       });
     }
+
     tabs.forEach((tab, index) => {
       tab.addEventListener('click', () => activateTab(tab));
       tab.addEventListener('keydown', (event) => {
