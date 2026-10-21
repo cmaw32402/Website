@@ -3,39 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Course projects">
-  <title>Course Projects | Your Name</title>
+  <meta name="description" content="Academic robotics and machine learning projects by Christian Marowski">
+  <title>Projects | Christian Marowski</title>
   <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
   <main class="page">
     <header class="site-header">
-      <h1>Your Name</h1>
+      <h1>Christian Marowski</h1>
       <nav class="site-nav" aria-label="Main navigation">
         <a href="index.html">About Me</a>
         <a href="research.html">Research &amp; Publications</a>
-        <a href="projects.html" aria-current="page">Course Projects</a>
+        <a href="projects.html" aria-current="page">Projects</a>
         <a href="cv.html">CV</a>
       </nav>
     </header>
 
-    <section class="section" id="projects">
-      <h2>Course Projects</h2>
+    <section class="section" aria-labelledby="projects-title">
+      <h2 id="projects-title">Projects</h2>
+      <p class="project-list-intro">Selected work in robotics, multi-robot coordination, and machine learning.</p>
 
-      <h3 class="subsection-title">Current Projects</h3>
-      <!-- Duplicate an article.entry for each current project. -->
-      <article class="entry">
-        <h4 class="entry-title placeholder">[Project title]</h4>
-        <p class="entry-meta placeholder">[Course / Institution]</p>
-        <p class="entry-description placeholder">[Brief description of the project.]</p>
-      </article>
-
-      <h3 class="subsection-title">Past Projects</h3>
-      <!-- Duplicate an article.entry for each past project. -->
-      <article class="entry">
-        <h4 class="entry-title placeholder">[Project title]</h4>
-        <p class="entry-meta placeholder">[Course / Institution]</p>
-        <p class="entry-description placeholder">[Brief description of the project.]</p>
+      <!-- Add additional project articles here as the portfolio grows. -->
+      <article class="project-list-item">
+        <div class="project-list-copy">
+          <p class="project-eyebrow">Multi-Robot Systems · Graph Neural Networks</p>
+          <h3 class="project-list-title">
+            <a href="gnn-flocking.html">GNN for Flocking Control in Multi-Robot Systems <span aria-hidden="true">→</span></a>
+          </h3>
+          <p class="entry-meta">Christian Marowski &amp; Lucas Herbst · Webots simulation</p>
+          <p class="entry-description">Trained a graph neural network through imitation learning to reproduce a classical flocking controller for six robots. Compared formation tracking, navigation time, and obstacle avoidance.</p>
+          <p class="project-read-more"><a href="gnn-flocking.html">View project, videos, and results <span aria-hidden="true">→</span></a></p>
+        </div>
+        <a class="project-list-visual" href="gnn-flocking.html" aria-label="View the GNN flocking project">
+          <img src="website_images/gnn_s5_setup.png" alt="Top-down waypoint and obstacle arrangement for the flocking simulation" loading="lazy">
+        </a>
       </article>
     </section>
   </main>
