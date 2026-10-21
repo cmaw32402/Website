@@ -1,107 +1,287 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="GNN flocking control project: approach, Webots demos, and comparison with a classical controller" name="description"/>
-<title>GNN for Flocking Control | Christian Marowski</title>
-<link href="stylesheet.css" rel="stylesheet"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GNN flocking control project with Webots demos and controller comparison">
+  <title>GNN for Flocking Control | Christian Marowski</title>
+  <link rel="stylesheet" href="stylesheet.css">
+
+  <!-- Page-specific styles: keeps the rest of the website unchanged. -->
+  <style>
+    .page.project-page-container {
+      width: min(1100px, calc(100% - 72px));
+      margin: 0 auto;
+      padding: 30px 0 52px;
+    }
+    .project-page-container .site-header { margin-bottom: 26px; }
+
+    .project-detail { max-width: 1100px; }
+    .project-back { margin: 0 0 12px; font-size: .92rem; }
+    .project-page-title {
+      margin: 0 0 9px;
+      color: var(--blue, #173d70);
+      font-size: clamp(1.6rem, 2.7vw, 2rem);
+      font-weight: 600;
+      letter-spacing: -.02em;
+      line-height: 1.3;
+    }
+    .project-lead {
+      max-width: 900px;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .project-block { margin-top: 26px; }
+    .project-block .subsection-title {
+      margin: 0 0 13px;
+      padding: 0 0 6px;
+    }
+    .project-block p { margin: 0 0 12px; }
+    .project-method-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, .9fr);
+      gap: 25px;
+      align-items: start;
+    }
+    .project-figure { margin: 0; min-width: 0; }
+    .project-figure img { display: block; width: 100%; height: auto; }
+    .project-setup img {
+      width: 100%;
+      max-height: 240px;
+      object-fit: contain;
+    }
+    .project-figure figcaption,
+    .project-media-caption {
+      margin: 6px 0 0;
+      color: var(--muted, #6b7682);
+      font-size: .83rem;
+      line-height: 1.45;
+    }
+    .project-media-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      align-items: start;
+    }
+    .project-video { min-width: 0; }
+    .project-video h4 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .project-video-frame {
+      overflow: hidden;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #f0f3f7;
+      border: 1px solid var(--line, #e6ebf1);
+      border-radius: 4px;
+    }
+    .project-video-frame iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .project-results-top {
+      display: grid;
+      grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+      gap: 25px;
+      align-items: start;
+      margin-bottom: 15px;
+    }
+    .project-table-wrap { min-width: 0; overflow-x: auto; }
+    .project-results-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .93rem;
+      line-height: 1.5;
+    }
+    .project-results-table th,
+    .project-results-table td {
+      padding: 7px 10px;
+      text-align: left;
+      border-bottom: 1px solid var(--line, #e6ebf1);
+    }
+    .project-results-table thead th {
+      color: var(--blue, #173d70);
+      border-bottom-width: 2px;
+      font-weight: 600;
+    }
+    .project-results-table tbody th { font-weight: 500; }
+    .project-results-table th:not(:first-child),
+    .project-results-table td { text-align: center; }
+    .project-charts { gap: 18px; }
+    .project-charts img {
+      border: 1px solid var(--line, #e6ebf1);
+      border-radius: 3px;
+    }
+    .project-results-note {
+      margin: 13px 0 0 !important;
+      font-size: .93rem;
+      color: var(--muted, #6b7682);
+    }
+    @media (max-width: 760px) {
+      .page.project-page-container {
+        width: calc(100% - 36px);
+        padding: 26px 0 45px;
+      }
+      .project-page-container .site-header { margin-bottom: 23px; }
+      .project-method-layout,
+      .project-results-top { grid-template-columns: 1fr; gap: 12px; }
+      .project-media-grid { grid-template-columns: 1fr; gap: 19px; }
+      .project-block { margin-top: 23px; }
+      .project-setup img { max-height: 230px; }
+    }
+  </style>
 </head>
 <body>
-<main class="page">
-<header class="site-header">
-<h1>Christian Marowski</h1>
-<nav aria-label="Main navigation" class="site-nav">
-<a href="index.html">About Me</a>
-<a href="research.html">Research &amp; Publications</a>
-<a aria-current="page" href="projects.html">Projects</a>
-<a href="cv.html">CV</a>
-</nav>
-</header>
-<article class="project-detail">
-<p class="project-back"><a href="projects.html">← All Projects</a></p>
-<p class="project-eyebrow">Multi-Robot Systems · Graph Neural Networks · Imitation Learning</p>
-<h2 class="project-page-title">GNN for Flocking Control in Multi-Robot Systems</h2>
-<p class="project-byline">Christian Marowski &amp; Lucas Herbst <span aria-hidden="true">·</span> Webots / E-puck simulation</p>
-<p class="project-lead">Can a graph neural network learn to coordinate a robot flock from the behavior of a classical controller? This project trains a graph-based policy to imitate six-robot formation and waypoint navigation, then evaluates how closely it matches the expert.</p>
-<div aria-label="On this page" class="project-jump-links">
-<a href="#approach">Approach</a>
-<a href="#demos">Demos</a>
-<a href="#results">Results</a>
-<a href="#limitations">Limitations</a>
-</div>
-<section aria-labelledby="approach-title" class="project-block" id="approach">
-<h3 class="subsection-title" id="approach-title">Approach</h3>
-<div class="project-method-layout">
-<div>
-<p>The experiment used <strong>six E-puck robots</strong> in a Webots arena with a square waypoint route and narrow obstacle passages. A classical Laplacian-based controller served as the expert policy, combining formation maintenance, waypoint navigation, and artificial-potential-field obstacle avoidance.</p>
-<p>A global supervisor recorded robot states and expert control commands to build graph training examples. Each robot was represented as a node, with neighbor connections and features describing position, waypoints, obstacles, and formation. The GNN used message passing to predict a two-dimensional control vector for each robot and was deployed back into Webots.</p>
-</div>
-<figure class="project-figure project-setup">
-<img alt="Overhead diagram of the square waypoint path with narrow passage obstacles" loading="lazy" src="website_images/gnn_s5_setup.png"/>
-<figcaption>Simulation course: square waypoint route with obstacle passages.</figcaption>
-</figure>
-</div>
-</section>
-<section aria-labelledby="demos-title" class="project-block" id="demos">
-<h3 class="subsection-title" id="demos-title">Controller Demos</h3>
-<p>Both controllers were tested in the same simulated navigation task.</p>
-<div class="project-media-grid">
-<div class="project-video">
-<h4>Classical Laplacian Controller</h4>
-<div class="project-video-frame">
-<iframe allow="autoplay; fullscreen" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://drive.google.com/file/d/1U6g0LKdKcJmfLjUSus2X8DSCOR1OxAQm/preview" title="Classical flocking controller demonstration"></iframe>
-</div>
-<p class="project-media-caption"><a href="https://drive.google.com/file/d/1U6g0LKdKcJmfLjUSus2X8DSCOR1OxAQm/view" rel="noopener noreferrer" target="_blank">Watch on Google Drive ↗</a></p>
-</div>
-<div class="project-video">
-<h4>GNN Controller</h4>
-<div class="project-video-frame">
-<iframe allow="autoplay; fullscreen" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://drive.google.com/file/d/1MbFEdB3uoxxxfuBtNWJexHYCme8EsjbO/preview" title="Graph neural network flocking controller demonstration"></iframe>
-</div>
-<p class="project-media-caption"><a href="https://drive.google.com/file/d/1MbFEdB3uoxxxfuBtNWJexHYCme8EsjbO/view" rel="noopener noreferrer" target="_blank">Watch on Google Drive ↗</a></p>
-</div>
-</div>
-</section>
-<section aria-labelledby="results-title" class="project-block" id="results">
-<h3 class="subsection-title" id="results-title">Results</h3>
-<p>The learned controller achieved similar average and peak formation error, with a comparable cycle time. Obstacle avoidance was weaker: the GNN had three collisions where the classical controller had none.</p>
-<div class="project-table-wrap">
-<table class="project-results-table">
-<caption>Results reported in the project presentation</caption>
-<thead><tr><th scope="col">Metric</th><th scope="col">Classical</th><th scope="col">GNN</th></tr></thead>
-<tbody>
-<tr><th scope="row">Average formation error</th><td>0.012</td><td>0.013</td></tr>
-<tr><th scope="row">Peak formation error</th><td>0.092</td><td>0.092</td></tr>
-<tr><th scope="row">Cycle completion time</th><td>488 s</td><td>493 s</td></tr>
-<tr><th scope="row">Collisions</th><td>0</td><td>3</td></tr>
-</tbody>
-</table>
-</div>
-<div class="project-media-grid project-charts">
-<figure class="project-figure">
-<a aria-label="Open formation-error plot at full size" href="website_images/results_classicals10.png" rel="noopener noreferrer" target="_blank"><img alt="Plot of classical controller average formation error over time, showing transient spikes near two route transitions" src="website_images/results_classicals10.png"/></a>
-<figcaption>Classical controller: average formation error over time.</figcaption>
-</figure>
-<figure class="project-figure">
-<a aria-label="Open formation-error plot at full size" href="website_images/results_gnns10.png" rel="noopener noreferrer" target="_blank"><img alt="Plot of GNN controller average formation error over time, showing transient spikes and a higher error baseline between transitions" src="website_images/results_gnns10.png"/></a>
-<figcaption>GNN controller: average formation error over time.</figcaption>
-</figure>
-</div>
-<p class="project-results-note">The GNN closely reproduced the expert's overall flocking behavior in this test, but formation similarity did not translate into collision-free obstacle navigation.</p>
-</section>
-<section aria-labelledby="limitations-title" class="project-block" id="limitations">
-<h3 class="subsection-title" id="limitations-title">Limitations &amp; Next Steps</h3>
-<p>The imitation-learning dataset contained approximately <strong>4,000 samples</strong> from one arena and a repeated trajectory, limiting the diversity of demonstrated behavior. Evaluation was confined to six simulated robots; generalization to other swarm sizes and physical robots was not tested.</p>
-<p>Next steps include collecting more varied trajectories and obstacle interactions, improving obstacle-related graph features, and exploring reward-based training beyond pure imitation.</p>
-</section>
-<section aria-labelledby="contributions-title" class="project-block">
-<h3 class="subsection-title" id="contributions-title">Contributions</h3>
-<p><strong>Christian Marowski:</strong> GNN architecture, model implementation and Webots deployment, and data collection. <strong>Lucas Herbst:</strong> classical Laplacian controller and Webots environment setup.</p>
-</section>
-<p class="project-back project-bottom-link"><a href="projects.html">← Back to Projects</a></p>
-</article>
-</main>
+  <main class="page project-page-container">
+    <header class="site-header">
+      <h1>Christian Marowski</h1>
+      <nav aria-label="Main navigation" class="site-nav">
+        <a href="index.html">About Me</a>
+        <a href="research.html">Research &amp; Publications</a>
+        <a aria-current="page" href="projects.html">Projects</a>
+        <a href="cv.html">CV</a>
+      </nav>
+    </header>
+
+    <article class="project-detail">
+      <p class="project-back"><a href="projects.html">← Back to Projects</a></p>
+      <h2 class="project-page-title">GNN for Flocking Control</h2>
+      <p class="project-lead">
+        Training a graph neural network to imitate a classical multi-robot flocking
+        controller, then comparing the two in a six-robot Webots simulation.
+      </p>
+
+      <section class="project-block" aria-labelledby="approach-title">
+        <h3 class="subsection-title" id="approach-title">Approach</h3>
+        <div class="project-method-layout">
+          <div>
+            <p>
+              Six E-puck robots followed a square waypoint route through obstacle
+              passages. A classical Laplacian-based controller handled formation
+              maintenance, navigation, and obstacle avoidance.
+            </p>
+            <p>
+              Robot states and expert commands were collected as graph training
+              samples. A message-passing GNN learned to predict each robot's
+              two-dimensional control vector and was tested in the same Webots arena.
+            </p>
+          </div>
+          <figure class="project-figure project-setup">
+            <img src="website_images/gnn_s5_setup.png"
+                 alt="Square waypoint course with narrow obstacle passages"
+                 loading="lazy">
+            <figcaption>Webots test course.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="project-block" aria-labelledby="demos-title">
+        <h3 class="subsection-title" id="demos-title">Controller Demos</h3>
+        <div class="project-media-grid">
+          <div class="project-video">
+            <h4>Classical Controller</h4>
+            <div class="project-video-frame">
+              <iframe
+                src="https://drive.google.com/file/d/1U6g0LKdKcJmfLjUSus2X8DSCOR1OxAQm/preview"
+                title="Classical flocking controller demonstration"
+                loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            </div>
+            <p class="project-media-caption">
+              <a href="https://drive.google.com/file/d/1U6g0LKdKcJmfLjUSus2X8DSCOR1OxAQm/view"
+                 target="_blank" rel="noopener noreferrer">Open video ↗</a>
+            </p>
+          </div>
+
+          <div class="project-video">
+            <h4>GNN Controller</h4>
+            <div class="project-video-frame">
+              <iframe
+                src="https://drive.google.com/file/d/1MbFEdB3uoxxxfuBtNWJexHYCme8EsjbO/preview"
+                title="Graph neural network flocking controller demonstration"
+                loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            </div>
+            <p class="project-media-caption">
+              <a href="https://drive.google.com/file/d/1MbFEdB3uoxxxfuBtNWJexHYCme8EsjbO/view"
+                 target="_blank" rel="noopener noreferrer">Open video ↗</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-block" aria-labelledby="results-title">
+        <h3 class="subsection-title" id="results-title">Results</h3>
+        <div class="project-results-top">
+          <div>
+            <p>
+              The GNN produced similar formation error and completion time
+              to the classical controller, but obstacle avoidance was less reliable:
+              the learned controller had three collisions.
+            </p>
+          </div>
+          <div class="project-table-wrap">
+            <table class="project-results-table">
+              <thead>
+                <tr>
+                  <th scope="col">Metric</th>
+                  <th scope="col">Classical</th>
+                  <th scope="col">GNN</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Average formation error</th>
+                  <td>0.012</td>
+                  <td>0.013</td>
+                </tr>
+                <tr>
+                  <th scope="row">Peak formation error</th>
+                  <td>0.092</td>
+                  <td>0.092</td>
+                </tr>
+                <tr>
+                  <th scope="row">Cycle completion time</th>
+                  <td>488 s</td>
+                  <td>493 s</td>
+                </tr>
+                <tr>
+                  <th scope="row">Collisions</th>
+                  <td>0</td>
+                  <td>3</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="project-media-grid project-charts">
+          <figure class="project-figure">
+            <a href="website_images/results_classicals10.png" target="_blank"
+               rel="noopener noreferrer" aria-label="Open classical controller formation error plot">
+              <img src="website_images/results_classicals10.png"
+                   alt="Formation error over time for the classical controller" loading="lazy">
+            </a>
+            <figcaption>Classical controller formation error.</figcaption>
+          </figure>
+          <figure class="project-figure">
+            <a href="website_images/results_gnns10.png" target="_blank"
+               rel="noopener noreferrer" aria-label="Open GNN controller formation error plot">
+              <img src="website_images/results_gnns10.png"
+                   alt="Formation error over time for the GNN controller" loading="lazy">
+            </a>
+            <figcaption>GNN controller formation error.</figcaption>
+          </figure>
+        </div>
+        <p class="project-results-note">
+          The model was trained on approximately 4,000 samples from one arena and
+          repeated route, so performance on different environments or robot counts
+          remains untested.
+        </p>
+      </section>
+    </article>
+  </main>
 </body>
 </html>
