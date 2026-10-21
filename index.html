@@ -6,6 +6,20 @@
   <meta name="description" content="Christian Marowski — computer science graduate student and multi-robot systems researcher">
   <title>Christian Marowski</title>
   <link rel="stylesheet" href="stylesheet.css?v=20261021-canonical-v2">
+  <style>
+    /* Homepage only: center the overall block, preserving the existing
+       left-aligned navigation and right-column text indentation. */
+    @media (min-width: 761px) {
+      .home-page {
+        width: min(900px, calc(100% - 80px));
+        margin-inline: auto;
+      }
+      .home-page .home-layout {
+        grid-template-columns: minmax(0, 250px) minmax(0, 1fr);
+        column-gap: 54px;
+      }
+    }
+  </style>
 </head>
 <body>
   <main class="page home-page">
