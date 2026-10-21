@@ -4,112 +4,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Graph neural networks for flocking control: Webots simulation, model architecture, controller demos, and results.">
-  <title>GNN for Flocking Control | Christian Marowski</title>
-  <link rel="stylesheet" href="stylesheet.css?v=20261021-centered-v3">
-  <style>
-    /* Project-only styles. The other website pages and stylesheet are untouched. */
-    :root { --project-blue: #173d70; --project-text: #263341; --project-muted: #66788a; --project-line: #e1e8ef; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; background: white; color: var(--project-text); font: 16px/1.65 Arial, Helvetica, sans-serif; }
-    *, *::before, *::after { box-sizing: border-box; }
-    .gnn-page { width: min(1060px, calc(100% - 72px)); margin: 0 auto; padding: 31px 0 76px; }
-    .gnn-page .site-header { margin: 0 0 43px; }
-    .gnn-page .site-header h1 { margin: 0 0 6px; font-size: clamp(2.35rem, 4.2vw, 3.25rem); font-weight: 500; letter-spacing: -.038em; line-height: 1.25; color: var(--project-text); }
-    .gnn-page .site-nav { display: flex; gap: 7px 27px; align-items: center; justify-content: flex-start; flex-wrap: wrap; }
-    .gnn-page .site-nav a { display: inline-block; color: var(--project-blue); padding: 5px 0 4px; text-decoration: none; font-size: 1rem; font-weight: 500; border-bottom: 2px solid transparent; }
-    .gnn-page .site-nav a[aria-current="page"] { border-bottom-color: var(--project-blue); }
-    .gnn-page a { color: var(--project-blue); }
-    .gnn-page a:hover, .gnn-page a:focus-visible { text-decoration: underline; }
-
-    .project-detail { max-width: 1000px; }
-    .project-back { display: inline-block; margin: 0 0 16px; font-size: .91rem; text-decoration: none; }
-    .project-label { margin: 0 0 16px; color: var(--project-muted); font-size: .94rem; letter-spacing: 0; }
-    .project-heading { margin: 0 0 7px; font-size: clamp(1.9rem, 3.5vw, 2.75rem); font-weight: 600; letter-spacing: -.036em; color: var(--project-blue); line-height: 1.2; }
-    .project-intro { max-width: 770px; margin: 0 0 30px; color: #455467; font-size: 1.075rem; line-height: 1.7; }
-
-    /* Clean vertical sections, separated by a subtle rule. */
-    .story-section { padding: 25px 0 29px; border-top: 1px solid var(--project-line); }
-    .section-body { min-width: 0; }
-    .section-body h3 { margin: 0 0 10px; font-size: 1.34rem; line-height: 1.35; font-weight: 600; letter-spacing: -.015em; color: var(--project-blue); }
-    .section-body p { max-width: 780px; margin: 0 0 12px; line-height: 1.7; }
-    .section-body p:last-child { margin-bottom: 0; }
-    .quiet { color: var(--project-muted); }
-
-    .setup-figure { width: min(610px, 100%); margin: 20px 0 0; }
-    .setup-figure a, .figure-pair a { display: block; }
-    .setup-figure img { width: 100%; max-height: 295px; object-fit: contain; object-position: left center; display: block; }
-    figcaption { margin-top: 6px; color: var(--project-muted); font-size: .82rem; line-height: 1.5; }
-
-    /* Real HTML network diagram: no external image or JS needed. */
-    .architecture { width: 100%; margin: 20px 0 0; padding: 21px 20px 16px; border: 1px solid var(--project-line); border-radius: 8px; background: #fafbfd; }
-    .architecture-label { margin: 0 0 13px; color: #718496; font-size: .76rem; letter-spacing: .085em; text-transform: uppercase; font-weight: 600; }
-    .architecture-flow { display: grid; grid-template-columns: minmax(0, 1.1fr) 13px repeat(3, minmax(0, 1fr) 13px) minmax(0, 1fr); align-items: stretch; gap: 7px; }
-    .network-stage { display: flex; min-width: 0; min-height: 122px; flex-direction: column; align-items: flex-start; padding: 13px 11px; border: 1px solid #dce5ef; border-radius: 6px; background: white; }
-    .network-stage-title { margin: 0 0 6px; color: #1b416d; font-size: .92rem; font-weight: 700; line-height: 1.35; }
-    .network-stage-detail { color: #63768b; font-size: .79rem; line-height: 1.42; }
-    .network-stage:last-child { border-color: #a8c1db; background: #f3f8fc; }
-    .network-arrow { align-self: center; justify-self: center; color: #8ca2b9; font-size: 1.15rem; line-height: 1; }
-    .mini-graph { width: 103px; height: 52px; margin-top: auto; }
-    .architecture-notes { margin: 13px 0 0 !important; color: #66788a; font-size: .82rem; line-height: 1.6 !important; }
-    .architecture-notes strong { color: #435972; font-weight: 600; }
-
-    .video-pair, .figure-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin-top: 18px; }
-    .video-item, .figure-pair figure { margin: 0; min-width: 0; }
-    .video-item h4 { margin: 0 0 8px; font-size: .99rem; color: var(--project-text); font-weight: 600; }
-    .video-frame { aspect-ratio: 16 / 9; background: #e8edf3; overflow: hidden; border: 1px solid var(--project-line); border-radius: 4px; }
-    .video-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
-    .video-link { display: inline-block; margin-top: 6px; font-size: .84rem; text-decoration: none; }
-    .figure-pair img { display: block; width: 100%; height: auto; border: 1px solid var(--project-line); border-radius: 4px; }
-    .figure-pair a:hover img { border-color: #a4bad0; }
-
-    .results-table-wrap { width: min(720px, 100%); margin: 18px 0 22px; overflow-x: auto; }
-    .results-table { width: 100%; border-collapse: collapse; font-size: .94rem; line-height: 1.5; }
-    .results-table th, .results-table td { padding: 10px 12px; border-bottom: 1px solid var(--project-line); }
-    .results-table thead th { border-bottom: 2px solid #b8c8d9; color: var(--project-blue); font-weight: 600; }
-    .results-table th:first-child { text-align: left; }
-    .results-table th:not(:first-child), .results-table td { text-align: center; font-variant-numeric: tabular-nums; }
-    .results-table tbody th { font-weight: 400; color: var(--project-text); }
-    .result-takeaway { margin-top: 19px !important; color: #455467; }
-
-    @media (max-width: 880px) {
-      .architecture-flow { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 7px; }
-      .network-arrow { display: none; }
-      .network-stage { padding: 11px 8px; }
-    }
-    @media (max-width: 700px) {
-      .gnn-page { width: calc(100% - 38px); padding: 25px 0 48px; }
-      .gnn-page .site-header { margin-bottom: 31px; }
-      .gnn-page .site-header h1 { font-size: 2.25rem; }
-      .gnn-page .site-nav { gap: 3px 17px; }
-      .gnn-page .site-nav a { font-size: .91rem; }
-      .project-heading { font-size: 1.95rem; }
-      .project-intro { margin-bottom: 24px; font-size: 1rem; }
-      .story-section { padding: 23px 0; }
-      .section-body h3 { font-size: 1.24rem; }
-      .video-pair, .figure-pair { grid-template-columns: 1fr; gap: 19px; }
-      .architecture { padding: 15px 12px; }
-      .architecture-flow { grid-template-columns: 1fr; gap: 4px; }
-      .network-stage { min-height: auto; padding: 10px 13px; }
-      .network-stage-detail { font-size: .81rem; }
-      .mini-graph { margin-top: 7px; }
-      .network-arrow { display: block; transform: rotate(90deg); margin: 1px auto; }
-    }
-  </style>
+  <title>GNN for Flocking Control · Christian Marowski</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/aaaakshat/cm-web-fonts@latest/fonts.css">
+  <link rel="stylesheet" href="stylesheet.css?v=20261021-ref">
 </head>
 <body>
-  <main class="page gnn-page">
-    <header class="site-header">
-      <h1>Christian Marowski</h1>
-      <nav aria-label="Main navigation" class="site-nav">
-        <a href="index.html?v=20261021-centered-v3">About Me</a>
-        <a href="research.html?v=20261021-centered-v3">Research &amp; Publications</a>
-        <a href="projects.html?v=20261021-centered-v3" aria-current="page">Projects</a>
-        <a href="cv.html?v=20261021-centered-v3">CV</a>
+  <div class="page">
+    <header class="masthead">
+      <h1 class="name">Christian Marowski</h1>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">About Me</a>
+        <a href="index.html#research">Research</a>
+        <a href="projects.html" aria-current="page">Projects</a>
+        <a href="cv.html">CV</a>
       </nav>
     </header>
+    <hr>
 
     <article class="project-detail">
-      <a class="project-back" href="projects.html?v=20261021-centered-v3">← Back to Projects</a>
+      <a class="project-back" href="projects.html">← Back to Projects</a>
       <h2 class="project-heading">GNN for Flocking Control</h2>
       <p class="project-label">Class Project · Multi-Robot Systems</p>
       <p class="project-intro">Can a graph neural network learn multi-robot flocking from a classical controller? I trained a graph-based policy on expert demonstrations and compared its behavior with the original controller in simulation.</p>
@@ -149,8 +62,8 @@
                 <span class="network-stage-title">Graph input</span>
                 <span class="network-stage-detail">Robot features + neighbor edges</span>
                 <svg class="mini-graph" viewBox="0 0 103 52" role="img" aria-label="Six graph nodes with neighbor connections">
-                  <g fill="none" stroke="#aac0d5" stroke-width="1.6"><path d="M16 13 49 7 84 14 78 41 45 43 15 36 16 13 M16 13 45 43 M49 7 78 41 M84 14 45 43 M15 36 49 7" /></g>
-                  <g fill="#285a8d" stroke="white" stroke-width="2"><circle cx="16" cy="13" r="5"/><circle cx="49" cy="7" r="5"/><circle cx="84" cy="14" r="5"/><circle cx="78" cy="41" r="5"/><circle cx="45" cy="43" r="5"/><circle cx="15" cy="36" r="5"/></g>
+                  <g fill="none" stroke="#d4b4ba" stroke-width="1.6"><path d="M16 13 49 7 84 14 78 41 45 43 15 36 16 13 M16 13 45 43 M49 7 78 41 M84 14 45 43 M15 36 49 7" /></g>
+                  <g fill="#7a1f2b" stroke="white" stroke-width="2"><circle cx="16" cy="13" r="5"/><circle cx="49" cy="7" r="5"/><circle cx="84" cy="14" r="5"/><circle cx="78" cy="41" r="5"/><circle cx="45" cy="43" r="5"/><circle cx="15" cy="36" r="5"/></g>
                 </svg>
               </div>
               <span class="network-arrow" aria-hidden="true">→</span>
@@ -237,6 +150,6 @@
         </div>
       </section>
     </article>
-  </main>
+  </div>
 </body>
 </html>

@@ -1,42 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Academic robotics and machine learning projects by Christian Marowski">
-  <title>Projects | Christian Marowski</title>
-  <link rel="stylesheet" href="stylesheet.css?v=20261021-centered-v3">
+  <title>Projects · Christian Marowski</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/aaaakshat/cm-web-fonts@latest/fonts.css">
+  <link rel="stylesheet" href="stylesheet.css?v=20261021-ref">
 </head>
 <body>
-  <main class="page">
-    <header class="site-header">
-      <h1>Christian Marowski</h1>
-      <nav class="site-nav" aria-label="Main navigation">
-        <a href="index.html?v=20261021-centered-v3">About Me</a>
-        <a href="research.html?v=20261021-centered-v3">Research &amp; Publications</a>
-        <a href="projects.html?v=20261021-centered-v3" aria-current="page">Projects</a>
-        <a href="cv.html?v=20261021-centered-v3">CV</a>
+  <div class="page">
+    <header class="masthead">
+      <h1 class="name">Christian Marowski</h1>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">About Me</a>
+        <a href="index.html#research">Research</a>
+        <a href="projects.html" aria-current="page">Projects</a>
+        <a href="cv.html">CV</a>
       </nav>
     </header>
+    <hr>
 
-    <section class="section" aria-labelledby="projects-title">
-      <h2 id="projects-title">Projects</h2>
+    <p class="page-intro">Academic robotics and machine learning projects. For publications, see the <a href="index.html#research">Research</a> section.</p>
 
-      <!-- Add additional project articles here as the portfolio grows. -->
-      <article class="project-list-item">
-        <div class="project-list-copy">
-          <h3 class="project-list-title">
-            <a href="gnn-flocking.html?v=20261021-centered-v3">GNN for Flocking Control in Multi-Robot Systems <span aria-hidden="true">→</span></a>
-          </h3>
-          <p class="entry-meta">Class Project · Multi-Robot Systems</p>
-          <p class="entry-description">Trained a graph neural network through imitation learning to reproduce a classical flocking controller for six robots. Compared formation tracking, navigation time, and obstacle avoidance.</p>
-          <p class="project-read-more"><a href="gnn-flocking.html?v=20261021-centered-v3">View project, videos, and results <span aria-hidden="true">→</span></a></p>
-        </div>
-        <a class="project-list-visual" href="gnn-flocking.html?v=20261021-centered-v3" aria-label="View the GNN flocking project">
-          <img src="website_images/gnn_s5_setup.png" alt="Top-down waypoint and obstacle arrangement for the flocking simulation" loading="lazy">
-        </a>
-      </article>
-    </section>
-  </main>
+    <hr>
+    <article class="project" id="gnn-flocking">
+      <h3><a href="gnn-flocking.html">GNN for Flocking Control in Multi-Robot Systems</a></h3>
+      <p class="tags">Class Project · Multi-Robot Systems</p>
+      <div class="media">
+        <figure>
+          <a href="gnn-flocking.html"><img src="website_images/gnn_s5_setup.png" alt="Top-down waypoint and obstacle arrangement for the flocking simulation" class="contain"></a>
+          <figcaption>Simulation environment and waypoint route.</figcaption>
+        </figure>
+      </div>
+      <p>Trained a graph neural network through imitation learning to reproduce a classical flocking controller for six robots. Compared formation tracking, navigation time, and obstacle avoidance.</p>
+      <div class="links"><a href="gnn-flocking.html">View project, videos, and results</a></div>
+    </article>
+  </div>
 </body>
 </html>

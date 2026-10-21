@@ -1,117 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Christian Marowski — computer science graduate student and multi-robot systems researcher">
   <title>Christian Marowski</title>
-  <link rel="stylesheet" href="stylesheet.css?v=20261021-centered-v3">
+  <meta name="description" content="Christian Marowski — computer science graduate student and multi-robot systems researcher">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/aaaakshat/cm-web-fonts@latest/fonts.css">
+  <link rel="stylesheet" href="stylesheet.css?v=20261021-ref">
 </head>
 <body>
-  <main class="page home-page">
-    <header class="site-header">
-      <h1>Christian Marowski</h1>
-      <nav class="site-nav" aria-label="Main navigation">
-        <a href="index.html?v=20261021-centered-v3" aria-current="page">About Me</a>
-        <a href="research.html?v=20261021-centered-v3">Research &amp; Publications</a>
-        <a href="projects.html?v=20261021-centered-v3">Projects</a>
-        <a href="cv.html?v=20261021-centered-v3">CV</a>
+  <div class="page">
+
+    <header class="masthead">
+      <h1 class="name">Christian Marowski</h1>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html" aria-current="page">About Me</a>
+        <a href="index.html#research">Research</a>
+        <a href="projects.html">Projects</a>
+        <a href="cv.html">CV</a>
       </nav>
     </header>
+    <hr>
 
-    <section class="home-layout" aria-label="Education and experience">
-      <!-- Portrait on the left, as in the reference layout. -->
-      <div class="profile-column">
-        <img class="profile-photo" src="website_images/IMG_9210.jpeg"
-             alt="Portrait of Christian Marowski">
-      </div>
-
-      <div class="details-column">
-        <div class="tab-list" role="tablist" aria-label="Background sections">
-          <button class="tab-button" id="education-tab" type="button" role="tab"
-                  aria-selected="true" aria-controls="education-panel" tabindex="0">Education</button>
-          <button class="tab-button" id="experience-tab" type="button" role="tab"
-                  aria-selected="false" aria-controls="experience-panel" tabindex="-1">Experience</button>
-        </div>
-
-        <div class="tab-panel" id="education-panel" role="tabpanel"
-             aria-labelledby="education-tab" tabindex="0">
-          <div class="detail-item">
-            <h2 class="detail-title">Indiana University</h2>
-            <p class="detail-subtitle">M.S. in Computer Science</p>
-            <p class="detail-date">August 2025 – May 2027</p>
-          </div>
-          <div class="detail-item">
-            <h2 class="detail-title">Marquette University</h2>
-            <p class="detail-subtitle">B.S. in Computer Science and Cognitive Science</p>
-            <p class="detail-date">December 2024</p>
-          </div>
-        </div>
-
-        <div class="tab-panel" id="experience-panel" role="tabpanel"
-             aria-labelledby="experience-tab" tabindex="0" hidden>
-          <div class="detail-item">
-            <h2 class="detail-title">Research Assistant · SMART Lab</h2>
-            <p class="detail-subtitle">Indiana University · Dr. Byung-Cheol Min</p>
-            <p class="detail-date">May 2026 – Present</p>
-          </div>
-          <div class="detail-item">
-            <h2 class="detail-title">Optimization Team Member · LART</h2>
-            <p class="detail-subtitle">Indiana University · Dr. Lantao Liu and Hassan Jardali</p>
-            <p class="detail-date">November 2025 – Present</p>
-          </div>
-          <div class="detail-item">
-            <h2 class="detail-title">Data Research Contractor</h2>
-            <p class="detail-subtitle">Wisconsin Department of Public Instruction · Milwaukee, WI</p>
-            <p class="detail-date">August 2025 – January 2026</p>
-          </div>
-          <div class="detail-item">
-            <h2 class="detail-title">Head Teaching Assistant · Operating Systems</h2>
-            <p class="detail-subtitle">Marquette University · Dr. Dennis Brylow</p>
-            <p class="detail-date">January 2025 – May 2025</p>
-          </div>
-          <div class="detail-item">
-            <h2 class="detail-title">Research Assistant · PISCES</h2>
-            <p class="detail-subtitle">Marquette University · Dr. Dennis Brylow</p>
-            <p class="detail-date">Summer 2024 – August 2025</p>
-          </div>
+    <div class="intro">
+      <img src="website_images/IMG_9210.jpeg" alt="Portrait of Christian Marowski">
+      <div>
+        <div class="degrees">
+          <p><b>Indiana University</b>M.S. in Computer Science<br>August 2025 – May 2027</p>
+          <p><b>Marquette University</b>B.S. in Computer Science and Cognitive Science<br>December 2024</p>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section class="about-section" aria-labelledby="about-heading">
-      <h2 id="about-heading">About Me</h2>
+    <hr>
+    <section id="about">
+      <h2>About Me</h2>
       <p>I'm a master's student in Computer Science at Indiana University, where I work in the SMART Lab on multi-robot coordination. My interests include classical and learning-based control, graph neural networks, and multi-agent reinforcement learning for cooperative robot systems.</p>
+
+      <div class="affils" aria-label="Affiliations">
+        <div class="affil">
+          <div class="logo-placeholder">Logo</div>
+          Affiliation<br><span class="years">Years</span>
+        </div>
+        <div class="affil">
+          <div class="logo-placeholder">Logo</div>
+          Affiliation<br><span class="years">Years</span>
+        </div>
+        <div class="affil">
+          <div class="logo-placeholder">Logo</div>
+          Affiliation<br><span class="years">Years</span>
+        </div>
+        <div class="affil">
+          <div class="logo-placeholder">Logo</div>
+          Affiliation<br><span class="years">Years</span>
+        </div>
+      </div>
     </section>
-  </main>
 
-  <script>
-    // Request the deployed homepage again when returning from the browser's back/forward cache.
-    window.addEventListener('pageshow', (event) => {
-      if (event.persisted) window.location.reload();
-    });
+    <hr>
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="row"><div><b>Research Assistant · SMART Lab</b><br>Indiana University · Dr. Byung-Cheol Min</div><div class="when">May 2026 – Present</div></div>
+      <div class="row"><div><b>Optimization Team Member · LART</b><br>Indiana University · Dr. Lantao Liu and Hassan Jardali</div><div class="when">November 2025 – Present</div></div>
+      <div class="row"><div><b>Data Research Contractor</b><br>Wisconsin Department of Public Instruction · Milwaukee, WI</div><div class="when">August 2025 – January 2026</div></div>
+      <div class="row"><div><b>Head Teaching Assistant · Operating Systems</b><br>Marquette University · Dr. Dennis Brylow</div><div class="when">January 2025 – May 2025</div></div>
+      <div class="row"><div><b>Research Assistant · PISCES</b><br>Marquette University · Dr. Dennis Brylow</div><div class="when">Summer 2024 – August 2025</div></div>
+    </section>
 
-    const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
-    function activateTab(selectedTab) {
-      tabs.forEach((tab) => {
-        const active = tab === selectedTab;
-        tab.setAttribute('aria-selected', String(active));
-        tab.tabIndex = active ? 0 : -1;
-        document.getElementById(tab.getAttribute('aria-controls')).hidden = !active;
-      });
-    }
-    tabs.forEach((tab, index) => {
-      tab.addEventListener('click', () => activateTab(tab));
-      tab.addEventListener('keydown', (event) => {
-        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
-        event.preventDefault();
-        const next = event.key === 'Home' ? 0
-          : event.key === 'End' ? tabs.length - 1
-          : (index + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
-        activateTab(tabs[next]);
-        tabs[next].focus();
-      });
-    });
-  </script>
+    <hr>
+    <section id="research">
+      <h2>Research</h2>
+
+      <div class="pub">
+        <div class="thumb-placeholder">Image</div>
+        <div>
+          <p class="title">Task Structure and Scalability in Multi-Robot Authoring</p>
+          <p class="authors"><strong>Marowski, C.</strong>, &amp; Min, B.-C. (2026)</p>
+          <p class="venue">arXiv preprint, arXiv:2610.22670. Submitted to the IEEE International Conference on Robotics and Automation (ICRA 2027).</p>
+          <div class="links"><a href="https://arxiv.org/abs/2610.22670" target="_blank" rel="noopener">Paper</a><a href="https://sites.google.com/view/multirobotauthoring/home" target="_blank" rel="noopener">Project website</a><a href="https://drive.google.com/file/d/1oToWZpBnQrJCqJSK0HzqqDC6sPQVoYcR/view?usp=sharing" target="_blank" rel="noopener">Materials</a></div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="thumb-placeholder">Image</div>
+        <div>
+          <p class="title">A Comparative State-Level Analysis of Computer Science Teacher Capacity in Georgia and Wisconsin Public High Schools</p>
+          <p class="authors">Ramagoni, S. G., <strong>Marowski, C.</strong>, Christie, A., Cox, B., Brylow, D., &amp; Bourgeois, A. G. (2025)</p>
+          <p class="venue">55th IEEE Frontiers in Education Conference (FIE).</p>
+          <div class="links"><a href="https://ieeexplore.ieee.org/document/11328264" target="_blank" rel="noopener">Paper</a></div>
+        </div>
+      </div>
+
+      <p class="more">More of my work, with videos, is on the <a href="projects.html">Projects</a> page.</p>
+    </section>
+
+    <hr>
+    <footer>
+      © 2026 Christian Marowski
+    </footer>
+  </div>
 </body>
 </html>
