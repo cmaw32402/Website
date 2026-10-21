@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Personal academic portfolio">
+  <meta name="description" content="Christian Marowski — computer science graduate student and multi-robot systems researcher">
   <title>Christian Marowski</title>
   <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-  <main class="page">
+  <main class="page home-page">
     <header class="site-header">
       <h1>Christian Marowski</h1>
-      <!-- Main navigation opens separate pages. -->
       <nav class="site-nav" aria-label="Main navigation">
         <a href="index.html" aria-current="page">About Me</a>
         <a href="research.html">Research &amp; Publications</a>
@@ -20,10 +19,8 @@
       </nav>
     </header>
 
-    <!-- Education and experience on the left, smaller photo on the right. -->
-    <section class="home-layout" aria-label="Background">
+    <section class="home-layout" aria-label="Education and experience">
       <div class="details-column">
-        <!-- These switch content right here; they do not open another page. -->
         <div class="tab-list" role="tablist" aria-label="Background sections">
           <button class="tab-button" id="education-tab" type="button" role="tab"
                   aria-selected="true" aria-controls="education-panel" tabindex="0">Education</button>
@@ -31,51 +28,124 @@
                   aria-selected="false" aria-controls="experience-panel" tabindex="-1">Experience</button>
         </div>
 
-        <div class="tab-panel" id="education-panel" role="tabpanel"
-             aria-labelledby="education-tab" tabindex="0">
-          <!-- Duplicate a detail-item for each degree. -->
-          <div class="detail-item">
-            <h2 class="detail-title placeholder">[University]</h2>
-            <p class="detail-subtitle placeholder">[Degree / Field of study]</p>
-            <p class="detail-subtitle placeholder">[Department / Lab, optional]</p>
+        <div class="tab-panel" id="education-panel" role="tabpanel" aria-labelledby="education-tab" tabindex="0">
+          <div class="credential-item">
+            <div class="org-mark">
+              <span class="org-fallback" aria-hidden="true">IU</span>
+              <img src="website_images/iu-logo.jpg" alt="" onerror="this.hidden=true">
+            </div>
+            <div class="credential-copy">
+              <div class="credential-heading">
+                <h2 class="credential-title">Indiana University</h2>
+                <span class="credential-date">Aug 2025 – May 2027</span>
+              </div>
+              <p class="credential-description">M.S. in Computer Science</p>
+            </div>
           </div>
-          <div class="detail-item">
-            <h2 class="detail-title placeholder">[University]</h2>
-            <p class="detail-subtitle placeholder">[Degree / Field of study]</p>
+
+          <div class="credential-item">
+            <div class="org-mark">
+              <span class="org-fallback" aria-hidden="true">MU</span>
+              <img src="website_images/marquette-university-logo.png" alt="" onerror="this.hidden=true">
+            </div>
+            <div class="credential-copy">
+              <div class="credential-heading">
+                <h2 class="credential-title">Marquette University</h2>
+                <span class="credential-date">Dec 2024</span>
+              </div>
+              <p class="credential-description">B.S. in Computer Science and Cognitive Science</p>
+            </div>
           </div>
         </div>
 
-        <div class="tab-panel" id="experience-panel" role="tabpanel"
-             aria-labelledby="experience-tab" tabindex="0" hidden>
-          <!-- Duplicate a detail-item for each position. -->
-          <div class="detail-item">
-            <h2 class="detail-title placeholder">[Position / Organization]</h2>
-            <p class="detail-subtitle placeholder">[Role / Research area]</p>
-            <p class="detail-subtitle placeholder">[Dates]</p>
+        <div class="tab-panel" id="experience-panel" role="tabpanel" aria-labelledby="experience-tab" tabindex="0" hidden>
+          <div class="credential-item">
+            <div class="org-mark">
+              <span class="org-fallback" aria-hidden="true">IU</span>
+              <img src="website_images/iu-logo.jpg" alt="" onerror="this.hidden=true">
+            </div>
+            <div class="credential-copy">
+              <div class="credential-heading">
+                <h2 class="credential-title">Research Assistant</h2>
+                <span class="credential-date">May 2026 – Present</span>
+              </div>
+              <p class="credential-description">SMART Lab · Indiana University</p>
+              <p class="credential-context">Dr. Byung-Cheol Min</p>
+            </div>
           </div>
-          <div class="detail-item">
-            <h2 class="detail-title placeholder">[Position / Organization]</h2>
-            <p class="detail-subtitle placeholder">[Role / Research area]</p>
+
+          <div class="credential-item">
+            <div class="org-mark">
+              <span class="org-fallback" aria-hidden="true">IU</span>
+              <img src="website_images/iu-logo.jpg" alt="" onerror="this.hidden=true">
+            </div>
+            <div class="credential-copy">
+              <div class="credential-heading">
+                <h2 class="credential-title">Optimization Team Member</h2>
+                <span class="credential-date">Nov 2025 – Present</span>
+              </div>
+              <p class="credential-description">Luddy Autonomous Racing Team · Indiana University</p>
+              <p class="credential-context">Dr. Lantao Liu · Hassan Jardali</p>
+            </div>
+          </div>
+
+          <div class="credential-item">
+            <div class="org-mark org-mark-text" aria-hidden="true">DPI</div>
+            <div class="credential-copy">
+              <div class="credential-heading">
+                <h2 class="credential-title">Data Research Contractor</h2>
+                <span class="credential-date">Aug 2025 – Jan 2026</span>
+              </div>
+              <p class="credential-description">Wisconsin Department of Public Instruction</p>
+              <p class="credential-context">Milwaukee, Wisconsin</p>
+            </div>
+          </div>
+
+          <div class="credential-item">
+            <div class="org-mark">
+              <span class="org-fallback" aria-hidden="true">MU</span>
+              <img src="website_images/marquette-university-logo.png" alt="" onerror="this.hidden=true">
+            </div>
+            <div class="credential-copy">
+              <div class="credential-heading">
+                <h2 class="credential-title">Head Teaching Assistant — Operating Systems</h2>
+                <span class="credential-date">Jan 2025 – May 2025</span>
+              </div>
+              <p class="credential-description">Marquette University</p>
+              <p class="credential-context">Dr. Dennis Brylow</p>
+            </div>
+          </div>
+
+          <div class="credential-item">
+            <div class="org-mark">
+              <span class="org-fallback" aria-hidden="true">MU</span>
+              <img src="website_images/marquette-university-logo.png" alt="" onerror="this.hidden=true">
+            </div>
+            <div class="credential-copy">
+              <div class="credential-heading">
+                <h2 class="credential-title">Research Assistant</h2>
+                <span class="credential-date">Summer 2024 – Aug 2025</span>
+              </div>
+              <p class="credential-description">PISCES · Marquette University</p>
+              <p class="credential-context">Dr. Dennis Brylow</p>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="profile-column">
-        <!-- Keep IMG_9210.jpeg inside the website_images folder on GitHub. -->
-        <img class="profile-photo" src="website_images/IMG_9210.jpeg" alt="Portrait of Christian Marowski">
+        <img class="profile-photo" src="website_images/IMG_9210.jpeg" alt="Christian Marowski">
       </div>
     </section>
 
     <section class="about-section" aria-labelledby="about-heading">
       <h2 id="about-heading">About Me</h2>
-      <p class="placeholder">[A short introduction about yourself, your academic background, and your research interests.]</p>
-      <p class="placeholder">[An optional second paragraph about your current work or research goals.]</p>
+      <p>I'm a master's student in Computer Science at Indiana University, where I work in the SMART Lab on multi-robot coordination. My interests include classical and learning-based control, graph neural networks, and multi-agent reinforcement learning for cooperative robot systems.</p>
     </section>
   </main>
 
   <script>
     const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
-
     function activateTab(selectedTab) {
       tabs.forEach((tab) => {
         const active = tab === selectedTab;
@@ -84,7 +154,6 @@
         document.getElementById(tab.getAttribute('aria-controls')).hidden = !active;
       });
     }
-
     tabs.forEach((tab, index) => {
       tab.addEventListener('click', () => activateTab(tab));
       tab.addEventListener('keydown', (event) => {
