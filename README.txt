@@ -1,39 +1,45 @@
-CHRISTIAN MAROWSKI — ACADEMIC WEBSITE
+CHRISTIAN MAROWSKI — WEBSITE (CORRECTED LINKS + PROJECT LABELS)
 
-WHAT CHANGED
-- Kept the existing white-background, dark-blue styling and top navigation.
-- Changed "Course Projects" in navigation to "Projects".
-- Replaced the placeholder projects page with one GNN project.
-- Added the detailed gnn-flocking.html page with project description,
-  Webots setup image, comparison plots, metrics and two Google Drive demos.
-- Updated the shared header name to Christian Marowski.
+Why it was switching back to old pages
+----------------------------------
+Your uploaded copies had numbered names (index(8).html, projects(5).html,
+gnn-flocking(1).html, stylesheet(8).css). However, the website navigation
+always links to index.html, projects.html, and gnn-flocking.html.
+If the numbered copies were uploaded to the repo without renaming them, the
+original pages would remain unchanged and navigation would show older content.
+Browser/CDN cache can also briefly serve older content after a deployment.
 
-PUBLISH ON GITHUB PAGES
-1. Extract this ZIP before uploading. A ZIP itself will NOT publish these pages.
-2. Copy index.html, projects.html, gnn-flocking.html, research.html,
-   cv.html, stylesheet.css and the website_images/ folder to the
-   same directory in your GitHub Pages repository (normally its root).
-3. Commit the changes on the branch configured in Settings > Pages.
-4. Open https://YOUR-USERNAME.github.io/YOUR-REPO/projects.html
-   (or https://YOUR-USERNAME.github.io/projects.html for a user site).
-5. If a page appears stale, hard-refresh with Ctrl+Shift+R. In GitHub
-   Actions, check the Pages deployment if it has not updated.
+What this package changes
+-------------------------
+- Files are named using the CORRECT canonical names with no (1), (5), (8).
+- Every page's internal links and stylesheet reference have the same version
+  query (?v=20261021-canonical-v2) to force a fresh request after deployment.
+- Projects listing no longer has the `Graph Neural Networks · Imitation Learning`
+  eyebrow above the project title; keeps `Class Project · Multi-Robot Systems`
+  below the title.
+- GNN detail page removes the topic eyebrow above the title and shows
+  `Class Project · Multi-Robot Systems` directly BELOW the title.
+- Existing layout, navigation style, results, embedded videos, and photos
+  remain unchanged.
 
-LOCAL PREVIEW
-- Easiest: double-click index.html (or projects.html).
-- For a web-server preview: open a terminal in this extracted folder and run:
-    python -m http.server 8000
-  Then open http://localhost:8000/projects.html.
+Exact GitHub Pages steps
+------------------------
+1. EXTRACT this ZIP on your computer. Do not upload the ZIP directly.
+2. On GitHub, open your site's PUBLISHING folder (normally repository root,
+   or /docs if Settings > Pages says /docs).
+3. Upload ALL files FROM INSIDE the extracted folder, not the outer folder.
+   When GitHub shows the upload, it should say files such as index.html,
+   projects.html, gnn-flocking.html, stylesheet.css, and website_images/... .
+4. Confirm the upload will REPLACE the original index.html, projects.html,
+   gnn-flocking.html etc. Numbered copies are NOT replacements.
+5. Delete any accidental duplicate numbered filenames (index(8).html etc.)
+   in the repository if you want to keep it tidy; do NOT delete canonical files.
+6. Commit to the branch configured in Settings > Pages and check the published
+   site after the deployment is green.
+7. For stale browser pages, try Ctrl+Shift+R or a private/incognito window.
+   The ?v= query in the navigation and stylesheet is meant to avoid stale
+   browser caches.
 
-FOLDER NAMES AND VIDEOS
-- The image folder must be named EXACTLY website_images (underscore).
-- The HTML references three project PNGs and IMG_9210.jpeg.
-- Google Drive demos require viewer permissions that let others access them.
-- This package leaves unfilled Education, Experience, About, Research,
-  and CV placeholder text unchanged from the original template.
+Reminder: GitHub Pages default workflows should not be deleted.
 
-LATEST SMALL LAYOUT FIXES
-- Home portrait begins level with the Education/Experience tabs.
-- Project list thumbnail starts level with the GNN project title.
-- The GNN detail page setup screenshot sits beside the page title instead of in Approach.
-- Removed the extra topic labels above the GNN project titles.
+Images must live in website_images (underscore), not `website images`.
