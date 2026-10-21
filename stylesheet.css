@@ -253,9 +253,10 @@ a:hover, a:focus-visible { color: var(--blue-hover); text-decoration: underline;
   .project-results-table th, .project-results-table td { padding: 9px 10px; font-size: .88rem; }
 }
 
-/* Homepage: centered academic layout with portrait to the LEFT of the tabs. */
+/* Homepage only: center the portrait and tabs as a single 940px-wide block.
+   The header, text and blue indentation remain left aligned. */
 .home-page {
-  width: min(1040px, calc(100% - 72px));
+  width: min(940px, calc(100% - 72px));
   margin: 0 auto;
   padding-top: 35px;
   padding-bottom: 76px;
@@ -264,15 +265,15 @@ a:hover, a:focus-visible { color: var(--blue-hover); text-decoration: underline;
 
 .home-page .home-layout {
   display: grid;
-  grid-template-columns: minmax(230px, 290px) minmax(0, 1fr);
-  gap: clamp(36px, 5vw, 65px);
+  grid-template-columns: minmax(0, 250px) minmax(0, 1fr);
+  gap: 55px;
   align-items: start;
 }
 
 /* A little top padding aligns the portrait with the first credential, below the tabs. */
 .home-page .profile-column {
   width: 100%;
-  padding-top: 54px;
+  padding-top: 0;
   justify-self: start;
 }
 .home-page .profile-photo {
@@ -359,7 +360,7 @@ a:hover, a:focus-visible { color: var(--blue-hover); text-decoration: underline;
     grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
     gap: 30px;
   }
-  .home-page .profile-column { padding-top: 54px; }
+  .home-page .profile-column { padding-top: 0; }
   .home-page .detail-title { font-size: 1.1rem; }
   .home-page .detail-item { padding-left: 14px; }
 }
@@ -384,3 +385,7 @@ a:hover, a:focus-visible { color: var(--blue-hover); text-decoration: underline;
   .home-page .detail-item { margin-bottom: 21px; }
   .home-page .about-section { margin-top: 38px; }
 }
+
+/* Supporting links for publications. */
+.entry-resources { margin-top: 8px; color: var(--muted); font-size: .96rem; }
+.entry-resources a { font-weight: 500; }

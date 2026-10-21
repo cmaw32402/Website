@@ -1,45 +1,43 @@
-CHRISTIAN MAROWSKI — WEBSITE (CORRECTED LINKS + PROJECT LABELS)
+CHRISTIAN MAROWSKI — COMPLETE WEBSITE UPDATE (21 OCT 2026)
 
-Why it was switching back to old pages
-----------------------------------
-Your uploaded copies had numbered names (index(8).html, projects(5).html,
-gnn-flocking(1).html, stylesheet(8).css). However, the website navigation
-always links to index.html, projects.html, and gnn-flocking.html.
-If the numbered copies were uploaded to the repo without renaming them, the
-original pages would remain unchanged and navigation would show older content.
-Browser/CDN cache can also briefly serve older content after a deployment.
+This ZIP contains the ENTIRE website, not just the changed files.
+Upload the contents of the unzipped folder, not the ZIP itself.
 
-What this package changes
--------------------------
-- Files are named using the CORRECT canonical names with no (1), (5), (8).
-- Every page's internal links and stylesheet reference have the same version
-  query (?v=20261021-canonical-v2) to force a fresh request after deployment.
-- Projects listing no longer has the `Graph Neural Networks · Imitation Learning`
-  eyebrow above the project title; keeps `Class Project · Multi-Robot Systems`
-  below the title.
-- GNN detail page removes the topic eyebrow above the title and shows
-  `Class Project · Multi-Robot Systems` directly BELOW the title.
-- Existing layout, navigation style, results, embedded videos, and photos
-  remain unchanged.
+CHANGES
+- Homepage (index.html + stylesheet.css): centers the portrait and
+  Education/Experience together inside a narrower 940px container.
+  Left-aligned labels, portrait, blue lines, navigation and text styling stay.
+- Publications (research.html): adds project website and Google Drive
+  supporting-materials links directly beneath the multi-robot authoring paper.
+- All five HTML pages: canonical internal links use one new version value
+  (?v=20261021-centered-v3); the CSS link also uses this value to minimize
+  stale browser cache displays after you replace your repository files.
+- Homepage: reloads on return from browser back/forward cache, to avoid
+  showing a previously saved snapshot after navigating between pages.
 
-Exact GitHub Pages steps
-------------------------
-1. EXTRACT this ZIP on your computer. Do not upload the ZIP directly.
-2. On GitHub, open your site's PUBLISHING folder (normally repository root,
-   or /docs if Settings > Pages says /docs).
-3. Upload ALL files FROM INSIDE the extracted folder, not the outer folder.
-   When GitHub shows the upload, it should say files such as index.html,
-   projects.html, gnn-flocking.html, stylesheet.css, and website_images/... .
-4. Confirm the upload will REPLACE the original index.html, projects.html,
-   gnn-flocking.html etc. Numbered copies are NOT replacements.
-5. Delete any accidental duplicate numbered filenames (index(8).html etc.)
-   in the repository if you want to keep it tidy; do NOT delete canonical files.
-6. Commit to the branch configured in Settings > Pages and check the published
-   site after the deployment is green.
-7. For stale browser pages, try Ctrl+Shift+R or a private/incognito window.
-   The ?v= query in the navigation and stylesheet is meant to avoid stale
-   browser caches.
+WHY OLD VERSIONS MAY REAPPEAR
+An earlier issue was numbered file uploads: index(8).html does NOT replace
+index.html, and projects(5).html does NOT replace projects.html.
+GitHub Pages can also deploy from a different branch or folder, or retain
+old browser/CDN cache temporarily. HTML cannot override a wrong publishing
+source or older content deployed by another workflow.
 
-Reminder: GitHub Pages default workflows should not be deleted.
+HOW TO UPLOAD CORRECTLY
+1. Unzip the package on your computer.
+2. In GitHub, check Settings > Pages for the CURRENT publishing source,
+   including the branch and folder (repository root or /docs).
+3. Upload ALL files INSIDE this folder to that publishing folder.
+   The landing page MUST literally be named index.html.
+   Keep the website_images folder and filenames unchanged.
+4. Replace each existing index.html, research.html, projects.html,
+   gnn-flocking.html, cv.html and stylesheet.css; do not upload numbered
+   copies such as index(9).html or another nested folder.
+5. Commit the changes. In Actions, check that a GitHub Pages deployment
+   completes from the expected commit. If multiple workflows publish the
+   same site, investigate which source is configured; don't delete one
+   just because a previous version appeared.
+6. Visit both the site root (/) and /index.html and check both show the
+   centered homepage. If not, see which exact branch/folder is published.
+7. If needed, hard refresh (Ctrl+Shift+R) or try a private window.
 
-Images must live in website_images (underscore), not `website images`.
+This package does not modify your GitHub repository automatically.
