@@ -3,283 +3,238 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="GNN flocking control project with Webots demos and controller comparison">
+  <meta name="description" content="Graph neural networks for flocking control: Webots simulation, model architecture, controller demos, and results.">
   <title>GNN for Flocking Control | Christian Marowski</title>
   <link rel="stylesheet" href="stylesheet.css">
-
-  <!-- Page-specific styles: keeps the rest of the website unchanged. -->
   <style>
-    .page.project-page-container {
-      width: min(1100px, calc(100% - 72px));
-      margin: 0 auto;
-      padding: 30px 0 52px;
-    }
-    .project-page-container .site-header { margin-bottom: 26px; }
+    /* Project-only styles. The other website pages and stylesheet are untouched. */
+    :root { --project-blue: #173d70; --project-text: #263341; --project-muted: #66788a; --project-line: #e1e8ef; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: white; color: var(--project-text); font: 16px/1.65 Arial, Helvetica, sans-serif; }
+    *, *::before, *::after { box-sizing: border-box; }
+    .gnn-page { width: min(1060px, calc(100% - 72px)); margin: 0 auto; padding: 31px 0 76px; }
+    .gnn-page .site-header { margin: 0 0 43px; }
+    .gnn-page .site-header h1 { margin: 0 0 6px; font-size: clamp(2.35rem, 4.2vw, 3.25rem); font-weight: 500; letter-spacing: -.038em; line-height: 1.25; color: var(--project-text); }
+    .gnn-page .site-nav { display: flex; gap: 7px 27px; align-items: center; justify-content: flex-start; flex-wrap: wrap; }
+    .gnn-page .site-nav a { display: inline-block; color: var(--project-blue); padding: 5px 0 4px; text-decoration: none; font-size: 1rem; font-weight: 500; border-bottom: 2px solid transparent; }
+    .gnn-page .site-nav a[aria-current="page"] { border-bottom-color: var(--project-blue); }
+    .gnn-page a { color: var(--project-blue); }
+    .gnn-page a:hover, .gnn-page a:focus-visible { text-decoration: underline; }
 
-    .project-detail { max-width: 1100px; }
-    .project-back { margin: 0 0 12px; font-size: .92rem; }
-    .project-page-title {
-      margin: 0 0 9px;
-      color: var(--blue, #173d70);
-      font-size: clamp(1.6rem, 2.7vw, 2rem);
-      font-weight: 600;
-      letter-spacing: -.02em;
-      line-height: 1.3;
+    .project-detail { max-width: 1000px; }
+    .project-back { display: inline-block; margin: 0 0 16px; font-size: .91rem; text-decoration: none; }
+    .project-label { margin: 0 0 6px; color: var(--project-muted); font-size: .85rem; letter-spacing: .045em; }
+    .project-heading { margin: 0 0 12px; font-size: clamp(1.9rem, 3.5vw, 2.75rem); font-weight: 600; letter-spacing: -.036em; color: var(--project-blue); line-height: 1.2; }
+    .project-intro { max-width: 770px; margin: 0 0 30px; color: #455467; font-size: 1.075rem; line-height: 1.7; }
+
+    /* Clean vertical sections, separated by a subtle rule. */
+    .story-section { padding: 25px 0 29px; border-top: 1px solid var(--project-line); }
+    .section-body { min-width: 0; }
+    .section-body h3 { margin: 0 0 10px; font-size: 1.34rem; line-height: 1.35; font-weight: 600; letter-spacing: -.015em; color: var(--project-blue); }
+    .section-body p { max-width: 780px; margin: 0 0 12px; line-height: 1.7; }
+    .section-body p:last-child { margin-bottom: 0; }
+    .quiet { color: var(--project-muted); }
+
+    .setup-figure { width: min(610px, 100%); margin: 20px 0 0; }
+    .setup-figure a, .figure-pair a { display: block; }
+    .setup-figure img { width: 100%; max-height: 295px; object-fit: contain; object-position: left center; display: block; }
+    figcaption { margin-top: 6px; color: var(--project-muted); font-size: .82rem; line-height: 1.5; }
+
+    /* Real HTML network diagram: no external image or JS needed. */
+    .architecture { width: 100%; margin: 20px 0 0; padding: 21px 20px 16px; border: 1px solid var(--project-line); border-radius: 8px; background: #fafbfd; }
+    .architecture-label { margin: 0 0 13px; color: #718496; font-size: .76rem; letter-spacing: .085em; text-transform: uppercase; font-weight: 600; }
+    .architecture-flow { display: grid; grid-template-columns: minmax(0, 1.1fr) 13px repeat(3, minmax(0, 1fr) 13px) minmax(0, 1fr); align-items: stretch; gap: 7px; }
+    .network-stage { display: flex; min-width: 0; min-height: 122px; flex-direction: column; align-items: flex-start; padding: 13px 11px; border: 1px solid #dce5ef; border-radius: 6px; background: white; }
+    .network-stage-title { margin: 0 0 6px; color: #1b416d; font-size: .92rem; font-weight: 700; line-height: 1.35; }
+    .network-stage-detail { color: #63768b; font-size: .79rem; line-height: 1.42; }
+    .network-stage:last-child { border-color: #a8c1db; background: #f3f8fc; }
+    .network-arrow { align-self: center; justify-self: center; color: #8ca2b9; font-size: 1.15rem; line-height: 1; }
+    .mini-graph { width: 103px; height: 52px; margin-top: auto; }
+    .architecture-notes { margin: 13px 0 0 !important; color: #66788a; font-size: .82rem; line-height: 1.6 !important; }
+    .architecture-notes strong { color: #435972; font-weight: 600; }
+
+    .video-pair, .figure-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin-top: 18px; }
+    .video-item, .figure-pair figure { margin: 0; min-width: 0; }
+    .video-item h4 { margin: 0 0 8px; font-size: .99rem; color: var(--project-text); font-weight: 600; }
+    .video-frame { aspect-ratio: 16 / 9; background: #e8edf3; overflow: hidden; border: 1px solid var(--project-line); border-radius: 4px; }
+    .video-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+    .video-link { display: inline-block; margin-top: 6px; font-size: .84rem; text-decoration: none; }
+    .figure-pair img { display: block; width: 100%; height: auto; border: 1px solid var(--project-line); border-radius: 4px; }
+    .figure-pair a:hover img { border-color: #a4bad0; }
+
+    .results-table-wrap { width: min(720px, 100%); margin: 18px 0 22px; overflow-x: auto; }
+    .results-table { width: 100%; border-collapse: collapse; font-size: .94rem; line-height: 1.5; }
+    .results-table th, .results-table td { padding: 10px 12px; border-bottom: 1px solid var(--project-line); }
+    .results-table thead th { border-bottom: 2px solid #b8c8d9; color: var(--project-blue); font-weight: 600; }
+    .results-table th:first-child { text-align: left; }
+    .results-table th:not(:first-child), .results-table td { text-align: center; font-variant-numeric: tabular-nums; }
+    .results-table tbody th { font-weight: 400; color: var(--project-text); }
+    .result-takeaway { margin-top: 19px !important; color: #455467; }
+
+    @media (max-width: 880px) {
+      .architecture-flow { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 7px; }
+      .network-arrow { display: none; }
+      .network-stage { padding: 11px 8px; }
     }
-    .project-lead {
-      max-width: 900px;
-      margin: 0;
-      line-height: 1.6;
-    }
-    .project-block { margin-top: 26px; }
-    .project-block .subsection-title {
-      margin: 0 0 13px;
-      padding: 0 0 6px;
-    }
-    .project-block p { margin: 0 0 12px; }
-    .project-method-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(0, .9fr);
-      gap: 25px;
-      align-items: start;
-    }
-    .project-figure { margin: 0; min-width: 0; }
-    .project-figure img { display: block; width: 100%; height: auto; }
-    .project-setup img {
-      width: 100%;
-      max-height: 240px;
-      object-fit: contain;
-    }
-    .project-figure figcaption,
-    .project-media-caption {
-      margin: 6px 0 0;
-      color: var(--muted, #6b7682);
-      font-size: .83rem;
-      line-height: 1.45;
-    }
-    .project-media-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
-      align-items: start;
-    }
-    .project-video { min-width: 0; }
-    .project-video h4 {
-      margin: 0 0 8px;
-      font-size: 1rem;
-      font-weight: 600;
-    }
-    .project-video-frame {
-      overflow: hidden;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      background: #f0f3f7;
-      border: 1px solid var(--line, #e6ebf1);
-      border-radius: 4px;
-    }
-    .project-video-frame iframe {
-      display: block;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-    .project-results-top {
-      display: grid;
-      grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
-      gap: 25px;
-      align-items: start;
-      margin-bottom: 15px;
-    }
-    .project-table-wrap { min-width: 0; overflow-x: auto; }
-    .project-results-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: .93rem;
-      line-height: 1.5;
-    }
-    .project-results-table th,
-    .project-results-table td {
-      padding: 7px 10px;
-      text-align: left;
-      border-bottom: 1px solid var(--line, #e6ebf1);
-    }
-    .project-results-table thead th {
-      color: var(--blue, #173d70);
-      border-bottom-width: 2px;
-      font-weight: 600;
-    }
-    .project-results-table tbody th { font-weight: 500; }
-    .project-results-table th:not(:first-child),
-    .project-results-table td { text-align: center; }
-    .project-charts { gap: 18px; }
-    .project-charts img {
-      border: 1px solid var(--line, #e6ebf1);
-      border-radius: 3px;
-    }
-    .project-results-note {
-      margin: 13px 0 0 !important;
-      font-size: .93rem;
-      color: var(--muted, #6b7682);
-    }
-    @media (max-width: 760px) {
-      .page.project-page-container {
-        width: calc(100% - 36px);
-        padding: 26px 0 45px;
-      }
-      .project-page-container .site-header { margin-bottom: 23px; }
-      .project-method-layout,
-      .project-results-top { grid-template-columns: 1fr; gap: 12px; }
-      .project-media-grid { grid-template-columns: 1fr; gap: 19px; }
-      .project-block { margin-top: 23px; }
-      .project-setup img { max-height: 230px; }
+    @media (max-width: 700px) {
+      .gnn-page { width: calc(100% - 38px); padding: 25px 0 48px; }
+      .gnn-page .site-header { margin-bottom: 31px; }
+      .gnn-page .site-header h1 { font-size: 2.25rem; }
+      .gnn-page .site-nav { gap: 3px 17px; }
+      .gnn-page .site-nav a { font-size: .91rem; }
+      .project-heading { font-size: 1.95rem; }
+      .project-intro { margin-bottom: 24px; font-size: 1rem; }
+      .story-section { padding: 23px 0; }
+      .section-body h3 { font-size: 1.24rem; }
+      .video-pair, .figure-pair { grid-template-columns: 1fr; gap: 19px; }
+      .architecture { padding: 15px 12px; }
+      .architecture-flow { grid-template-columns: 1fr; gap: 4px; }
+      .network-stage { min-height: auto; padding: 10px 13px; }
+      .network-stage-detail { font-size: .81rem; }
+      .mini-graph { margin-top: 7px; }
+      .network-arrow { display: block; transform: rotate(90deg); margin: 1px auto; }
     }
   </style>
 </head>
 <body>
-  <main class="page project-page-container">
+  <main class="page gnn-page">
     <header class="site-header">
       <h1>Christian Marowski</h1>
       <nav aria-label="Main navigation" class="site-nav">
         <a href="index.html">About Me</a>
         <a href="research.html">Research &amp; Publications</a>
-        <a aria-current="page" href="projects.html">Projects</a>
+        <a href="projects.html" aria-current="page">Projects</a>
         <a href="cv.html">CV</a>
       </nav>
     </header>
 
     <article class="project-detail">
-      <p class="project-back"><a href="projects.html">← Back to Projects</a></p>
-      <h2 class="project-page-title">GNN for Flocking Control</h2>
-      <p class="project-lead">
-        Training a graph neural network to imitate a classical multi-robot flocking
-        controller, then comparing the two in a six-robot Webots simulation.
-      </p>
+      <a class="project-back" href="projects.html">← Back to Projects</a>
+      <p class="project-label">Multi-Robot Systems · Webots · Imitation Learning</p>
+      <h2 class="project-heading">GNN for Flocking Control</h2>
+      <p class="project-intro">Can a graph neural network learn multi-robot flocking from a classical controller? I trained a graph-based policy on expert demonstrations and compared its behavior with the original controller in simulation.</p>
 
-      <section class="project-block" aria-labelledby="approach-title">
-        <h3 class="subsection-title" id="approach-title">Approach</h3>
-        <div class="project-method-layout">
-          <div>
-            <p>
-              Six E-puck robots followed a square waypoint route through obstacle
-              passages. A classical Laplacian-based controller handled formation
-              maintenance, navigation, and obstacle avoidance.
-            </p>
-            <p>
-              Robot states and expert commands were collected as graph training
-              samples. A message-passing GNN learned to predict each robot's
-              two-dimensional control vector and was tested in the same Webots arena.
-            </p>
-          </div>
-          <figure class="project-figure project-setup">
-            <img src="website_images/gnn_s5_setup.png"
-                 alt="Square waypoint course with narrow obstacle passages"
-                 loading="lazy">
-            <figcaption>Webots test course.</figcaption>
+      <section class="story-section" aria-labelledby="simulation-title">
+
+        <div class="section-body">
+          <h3 id="simulation-title">Simulation setup</h3>
+          <p>Six E-puck robots navigated a square waypoint route through narrow obstacle passages in Webots. A classical Laplacian controller served as the expert, combining formation maintenance, waypoint navigation, and artificial-potential-field obstacle avoidance.</p>
+          <figure class="setup-figure">
+            <a href="website_images/gnn_s5_setup.png" target="_blank" rel="noopener noreferrer" aria-label="Open simulation setup image">
+              <img src="website_images/gnn_s5_setup.png" alt="Square waypoint route with narrow obstacle passages in the Webots arena" loading="lazy">
+            </a>
+            <figcaption>Simulation environment and waypoint route.</figcaption>
           </figure>
         </div>
       </section>
 
-      <section class="project-block" aria-labelledby="demos-title">
-        <h3 class="subsection-title" id="demos-title">Controller Demos</h3>
-        <div class="project-media-grid">
-          <div class="project-video">
-            <h4>Classical Controller</h4>
-            <div class="project-video-frame">
-              <iframe
-                src="https://drive.google.com/file/d/1U6g0LKdKcJmfLjUSus2X8DSCOR1OxAQm/preview"
-                title="Classical flocking controller demonstration"
-                loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe>
-            </div>
-            <p class="project-media-caption">
-              <a href="https://drive.google.com/file/d/1U6g0LKdKcJmfLjUSus2X8DSCOR1OxAQm/view"
-                 target="_blank" rel="noopener noreferrer">Open video ↗</a>
-            </p>
-          </div>
+      <section class="story-section" aria-labelledby="training-title">
 
-          <div class="project-video">
-            <h4>GNN Controller</h4>
-            <div class="project-video-frame">
-              <iframe
-                src="https://drive.google.com/file/d/1MbFEdB3uoxxxfuBtNWJexHYCme8EsjbO/preview"
-                title="Graph neural network flocking controller demonstration"
-                loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        <div class="section-body">
+          <h3 id="training-title">Learning from the classical controller</h3>
+          <p>A Webots supervisor logged robot states, graph connections, and the expert's control commands. Approximately 4,000 samples were used for imitation learning: the network learned to predict the expert control vector for each robot.</p>
+        </div>
+      </section>
+
+      <section class="story-section" aria-labelledby="network-title">
+
+        <div class="section-body">
+          <h3 id="network-title">GNN architecture</h3>
+          <p>Each robot is a node, with edges describing neighboring robots. The model encodes robot features, exchanges information across connected neighbors, updates the node representations, and outputs a two-dimensional control vector for every robot.</p>
+
+          <figure class="architecture" aria-labelledby="architecture-caption">
+            <div class="architecture-label">Model pipeline</div>
+            <div class="architecture-flow">
+              <div class="network-stage">
+                <span class="network-stage-title">Graph input</span>
+                <span class="network-stage-detail">Robot features + neighbor edges</span>
+                <svg class="mini-graph" viewBox="0 0 103 52" role="img" aria-label="Six graph nodes with neighbor connections">
+                  <g fill="none" stroke="#aac0d5" stroke-width="1.6"><path d="M16 13 49 7 84 14 78 41 45 43 15 36 16 13 M16 13 45 43 M49 7 78 41 M84 14 45 43 M15 36 49 7" /></g>
+                  <g fill="#285a8d" stroke="white" stroke-width="2"><circle cx="16" cy="13" r="5"/><circle cx="49" cy="7" r="5"/><circle cx="84" cy="14" r="5"/><circle cx="78" cy="41" r="5"/><circle cx="45" cy="43" r="5"/><circle cx="15" cy="36" r="5"/></g>
+                </svg>
+              </div>
+              <span class="network-arrow" aria-hidden="true">→</span>
+              <div class="network-stage">
+                <span class="network-stage-title">Node encoder</span>
+                <span class="network-stage-detail">Transforms inputs into hidden features</span>
+              </div>
+              <span class="network-arrow" aria-hidden="true">→</span>
+              <div class="network-stage">
+                <span class="network-stage-title">Message MLP</span>
+                <span class="network-stage-detail">Combines node and edge information</span>
+              </div>
+              <span class="network-arrow" aria-hidden="true">→</span>
+              <div class="network-stage">
+                <span class="network-stage-title">Update MLP</span>
+                <span class="network-stage-detail">Integrates messages from neighbors</span>
+              </div>
+              <span class="network-arrow" aria-hidden="true">→</span>
+              <div class="network-stage">
+                <span class="network-stage-title">Output MLP</span>
+                <span class="network-stage-detail">Predicts (uₓ, uᵧ) per robot</span>
+              </div>
             </div>
-            <p class="project-media-caption">
-              <a href="https://drive.google.com/file/d/1MbFEdB3uoxxxfuBtNWJexHYCme8EsjbO/view"
-                 target="_blank" rel="noopener noreferrer">Open video ↗</a>
-            </p>
+            <figcaption id="architecture-caption" class="architecture-notes"><strong>Input features:</strong> position, waypoint vector, obstacle vectors, and formation vector; edges also carry attributes.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="story-section" aria-labelledby="demos-title">
+
+        <div class="section-body">
+          <h3 id="demos-title">Controller demos</h3>
+          <p>Both policies were tested on the same navigation course.</p>
+          <div class="video-pair">
+            <div class="video-item">
+              <h4>Classical controller</h4>
+              <div class="video-frame">
+                <iframe src="https://drive.google.com/file/d/1U6g0LKdKcJmfLjUSus2X8DSCOR1OxAQm/preview" title="Classical Laplacian controller Webots demonstration" loading="lazy" allow="autoplay; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+              </div>
+              <a class="video-link" href="https://drive.google.com/file/d/1U6g0LKdKcJmfLjUSus2X8DSCOR1OxAQm/view" target="_blank" rel="noopener noreferrer">Watch on Google Drive ↗</a>
+            </div>
+            <div class="video-item">
+              <h4>GNN controller</h4>
+              <div class="video-frame">
+                <iframe src="https://drive.google.com/file/d/1MbFEdB3uoxxxfuBtNWJexHYCme8EsjbO/preview" title="GNN flocking controller Webots demonstration" loading="lazy" allow="autoplay; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+              </div>
+              <a class="video-link" href="https://drive.google.com/file/d/1MbFEdB3uoxxxfuBtNWJexHYCme8EsjbO/view" target="_blank" rel="noopener noreferrer">Watch on Google Drive ↗</a>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="project-block" aria-labelledby="results-title">
-        <h3 class="subsection-title" id="results-title">Results</h3>
-        <div class="project-results-top">
-          <div>
-            <p>
-              The GNN produced similar formation error and completion time
-              to the classical controller, but obstacle avoidance was less reliable:
-              the learned controller had three collisions.
-            </p>
-          </div>
-          <div class="project-table-wrap">
-            <table class="project-results-table">
-              <thead>
-                <tr>
-                  <th scope="col">Metric</th>
-                  <th scope="col">Classical</th>
-                  <th scope="col">GNN</th>
-                </tr>
-              </thead>
+      <section class="story-section" aria-labelledby="results-title">
+
+        <div class="section-body">
+          <h3 id="results-title">Results</h3>
+          <p>The GNN closely matched the classical controller's formation error and lap time. Its main weakness was obstacle avoidance, where it recorded three collisions.</p>
+          <div class="results-table-wrap">
+            <table class="results-table">
+              <thead><tr><th scope="col">Metric</th><th scope="col">Classical</th><th scope="col">GNN</th></tr></thead>
               <tbody>
-                <tr>
-                  <th scope="row">Average formation error</th>
-                  <td>0.012</td>
-                  <td>0.013</td>
-                </tr>
-                <tr>
-                  <th scope="row">Peak formation error</th>
-                  <td>0.092</td>
-                  <td>0.092</td>
-                </tr>
-                <tr>
-                  <th scope="row">Cycle completion time</th>
-                  <td>488 s</td>
-                  <td>493 s</td>
-                </tr>
-                <tr>
-                  <th scope="row">Collisions</th>
-                  <td>0</td>
-                  <td>3</td>
-                </tr>
+                <tr><th scope="row">Average formation error</th><td>0.012</td><td>0.013</td></tr>
+                <tr><th scope="row">Peak formation error</th><td>0.092</td><td>0.092</td></tr>
+                <tr><th scope="row">Cycle completion time</th><td>488 s</td><td>493 s</td></tr>
+                <tr><th scope="row">Collisions</th><td>0</td><td>3</td></tr>
               </tbody>
             </table>
           </div>
+          <div class="figure-pair">
+            <figure>
+              <a href="website_images/results_classicals10.png" target="_blank" rel="noopener noreferrer" aria-label="Open classical controller formation-error plot">
+                <img src="website_images/results_classicals10.png" alt="Classical controller average formation error over time" loading="lazy">
+              </a>
+              <figcaption>Classical controller: formation error over time.</figcaption>
+            </figure>
+            <figure>
+              <a href="website_images/results_gnns10.png" target="_blank" rel="noopener noreferrer" aria-label="Open GNN controller formation-error plot">
+                <img src="website_images/results_gnns10.png" alt="GNN controller average formation error over time" loading="lazy">
+              </a>
+              <figcaption>GNN controller: formation error over time.</figcaption>
+            </figure>
+          </div>
+          <p class="result-takeaway">The experiments were limited to six simulated robots and a single training environment, so generalization to other robot counts or courses was not evaluated.</p>
         </div>
-
-        <div class="project-media-grid project-charts">
-          <figure class="project-figure">
-            <a href="website_images/results_classicals10.png" target="_blank"
-               rel="noopener noreferrer" aria-label="Open classical controller formation error plot">
-              <img src="website_images/results_classicals10.png"
-                   alt="Formation error over time for the classical controller" loading="lazy">
-            </a>
-            <figcaption>Classical controller formation error.</figcaption>
-          </figure>
-          <figure class="project-figure">
-            <a href="website_images/results_gnns10.png" target="_blank"
-               rel="noopener noreferrer" aria-label="Open GNN controller formation error plot">
-              <img src="website_images/results_gnns10.png"
-                   alt="Formation error over time for the GNN controller" loading="lazy">
-            </a>
-            <figcaption>GNN controller formation error.</figcaption>
-          </figure>
-        </div>
-        <p class="project-results-note">
-          The model was trained on approximately 4,000 samples from one arena and
-          repeated route, so performance on different environments or robot counts
-          remains untested.
-        </p>
       </section>
     </article>
   </main>
