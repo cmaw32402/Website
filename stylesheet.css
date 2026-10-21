@@ -36,11 +36,12 @@ p { margin: 0 0 14px; }
 a.text-link { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 2px; }
 a.text-link:hover { color: var(--accent); }
 
-/* Four affiliations, each with its own contained logo. */
+/* Four affiliations, each with its own contained logo. The IU Luddy image is sourced from the official IAC team page. */
 .affils { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 12px 0 18px; padding: 22px 16px; background: #fafafa; border-radius: 8px; }
-.affil { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 0; text-align: center; font-size: 14px; line-height: 1.35; }
-.affil img { display: block; width: 100%; max-width: 142px; height: 80px; object-fit: contain; }
-.affil-name { display: block; }
+.affil { display: flex; flex-direction: column; align-items: center; gap: 0; min-width: 0; text-align: center; font-size: 14px; line-height: 1.35; }
+.affil img { display: block; width: 100%; max-width: 142px; height: 80px; margin-bottom: 9px; object-fit: contain; }
+.affil-name { display: block; min-height: 3.9em; }
+.affil-dates { display: block; color: var(--muted); font: inherit; line-height: inherit; }
 
 ul.plain { margin: 0 0 14px; padding-left: 18px; }
 ul.plain li { margin-bottom: 6px; }
