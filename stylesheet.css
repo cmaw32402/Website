@@ -19,7 +19,7 @@ body {
 
 .page {
   width: min(1160px, calc(100% - 72px));
-  margin: 0 0 0 auto;
+  margin: 0 auto;
   padding: 35px 0 90px;
 }
 
@@ -59,7 +59,7 @@ a:hover, a:focus-visible { color: var(--blue-hover); text-decoration: underline;
   column-gap: clamp(34px, 5vw, 60px);
   align-items: start;
 }
-.profile-column { min-width: 0; justify-self: end; width: 100%; padding-top: 4px; }
+.profile-column { min-width: 0; justify-self: end; width: 100%; }
 .profile-photo {
   display: block;
   width: 100%;
@@ -69,7 +69,7 @@ a:hover, a:focus-visible { color: var(--blue-hover); text-decoration: underline;
   border-radius: 5px;
   margin: 0 0 0 auto;
 }
-.details-column { min-width: 0; padding-top: 0; }
+.details-column { min-width: 0; padding-top: 13px; }
 .tab-list {
   display: flex;
   gap: 25px;
@@ -166,7 +166,7 @@ a:hover, a:focus-visible { color: var(--blue-hover); text-decoration: underline;
   .site-nav { gap: 4px 17px; }
   .site-nav a { font-size: .94rem; }
   .home-layout { grid-template-columns: 1fr; row-gap: 25px; }
-  .profile-column { justify-self: start; padding-top: 0; }
+  .profile-column { justify-self: start; }
   .profile-photo { max-width: 220px; margin: 0; }
   .details-column { padding-top: 0; }
   .about-section { margin-top: 36px; }
@@ -182,7 +182,7 @@ a:hover, a:focus-visible { color: var(--blue-hover); text-decoration: underline;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(180px, 285px);
   gap: 32px;
-  align-items: start;
+  align-items: center;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   padding: 29px 0 31px;
@@ -253,18 +253,134 @@ a:hover, a:focus-visible { color: var(--blue-hover); text-decoration: underline;
   .project-results-table th, .project-results-table td { padding: 9px 10px; font-size: .88rem; }
 }
 
-/* Align the setup screenshot with the GNN title, not the Approach section. */
-.project-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(210px, 340px);
-  align-items: start;
-  gap: clamp(28px, 4vw, 48px);
-  margin-bottom: 42px;
+/* Homepage: centered academic layout with portrait to the LEFT of the tabs. */
+.home-page {
+  width: min(1040px, calc(100% - 72px));
+  margin: 0 auto;
+  padding-top: 35px;
+  padding-bottom: 76px;
 }
-.project-hero .project-page-title { margin-top: 0; }
-.project-hero .project-jump-links { margin-bottom: 0; }
-.project-hero .project-setup { margin-top: 7px; }
-@media (max-width: 780px) {
-  .project-hero { grid-template-columns: 1fr; gap: 22px; }
-  .project-hero .project-setup { margin-top: 0; max-width: 380px; }
+.home-page .site-header { margin-bottom: 43px; }
+
+.home-page .home-layout {
+  display: grid;
+  grid-template-columns: minmax(230px, 290px) minmax(0, 1fr);
+  gap: clamp(36px, 5vw, 65px);
+  align-items: start;
+}
+
+/* A little top padding aligns the portrait with the first credential, below the tabs. */
+.home-page .profile-column {
+  width: 100%;
+  padding-top: 54px;
+  justify-self: start;
+}
+.home-page .profile-photo {
+  display: block;
+  width: 100%;
+  max-width: none;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 42%;
+  border-radius: 4px;
+  margin: 0;
+}
+
+.home-page .details-column {
+  min-width: 0;
+  padding-top: 0;
+  max-width: 650px;
+}
+.home-page .tab-list {
+  display: flex;
+  gap: 30px;
+  margin: 0 0 23px;
+  align-items: center;
+}
+.home-page .tab-button {
+  padding: 0 0 7px;
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  font-weight: 600;
+  border-bottom-width: 2px;
+}
+.home-page .tab-panel[hidden] { display: none; }
+.home-page .tab-panel { min-width: 0; }
+.home-page .detail-item {
+  border-left: 3px solid var(--blue);
+  padding-left: 18px;
+  margin: 0 0 27px;
+  max-width: 610px;
+}
+.home-page .detail-item:last-child { margin-bottom: 0; }
+.home-page .detail-title {
+  margin: 0 0 2px;
+  color: var(--text);
+  font-size: 1.16rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+.home-page .detail-subtitle {
+  margin: 1px 0;
+  color: #4f5e6e;
+  font-size: .98rem;
+  line-height: 1.55;
+}
+.home-page .detail-date {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: .88rem;
+  line-height: 1.5;
+}
+.home-page #experience-panel .detail-item { margin-bottom: 20px; }
+.home-page #experience-panel .detail-title { font-size: 1.075rem; }
+.home-page #experience-panel .detail-subtitle { font-size: .93rem; }
+.home-page #experience-panel .detail-date { margin-top: 3px; font-size: .85rem; }
+
+/* The biography sits below both columns, not beside the photo. */
+.home-page .about-section {
+  margin-top: 60px;
+  width: 100%;
+}
+.home-page .about-section h2 {
+  font-size: 1.48rem;
+  margin: 0 0 13px;
+}
+.home-page .about-section p {
+  max-width: 980px;
+  font-size: 1rem;
+  line-height: 1.75;
+  margin: 0 0 13px;
+}
+
+@media (max-width: 760px) {
+  .home-page .home-layout {
+    grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+    gap: 30px;
+  }
+  .home-page .profile-column { padding-top: 54px; }
+  .home-page .detail-title { font-size: 1.1rem; }
+  .home-page .detail-item { padding-left: 14px; }
+}
+
+@media (max-width: 600px) {
+  .home-page {
+    width: calc(100% - 36px);
+    padding: 28px 0 56px;
+  }
+  .home-page .site-header { margin-bottom: 30px; }
+  .home-page .home-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .home-page .profile-column {
+    grid-row: 1;
+    padding-top: 0;
+    width: min(100%, 220px);
+  }
+  .home-page .details-column { grid-row: 2; }
+  .home-page .tab-list { margin-bottom: 21px; }
+  .home-page .detail-item { margin-bottom: 21px; }
+  .home-page .about-section { margin-top: 38px; }
 }
