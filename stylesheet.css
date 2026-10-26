@@ -41,13 +41,15 @@ a.text-link:hover { color: var(--accent); }
 .affil { display: flex; flex-direction: column; align-items: center; gap: 0; min-width: 0; text-align: center; font-size: 14px; line-height: 1.35; }
 .affil img { display: block; width: 100%; max-width: 142px; height: 80px; margin-bottom: 9px; object-fit: contain; }
 .affil-name { display: block; min-height: 3.9em; }
-.affil-dates { display: block; color: var(--muted); font: inherit; font-size: 10px; line-height: inherit; }
+.affil-dates { display: block; color: var(--muted); font: inherit; line-height: inherit; }
 
 ul.plain { margin: 0 0 14px; padding-left: 18px; }
 ul.plain li { margin-bottom: 6px; }
 
 .pub { display: grid; grid-template-columns: 170px 1fr; gap: 18px; padding: 12px 0; align-items: start; }
 .pub img { width: 170px; height: 115px; object-fit: cover; display: block; border: 1px solid #e3e3e3; }
+/* Keep publication images inside the existing thumbnail dimensions without cropping. */
+.pub img.pub-thumbnail { object-fit: contain; background: #fafafa; }
 .pub .title { font-weight: 700; margin: 0 0 2px; }
 .pub .authors, .pub .venue { margin: 0 0 2px; font-size: 16px; }
 .pub .venue { font-style: italic; }
