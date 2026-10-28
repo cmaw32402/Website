@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Multi-robot rendezvous, formation, obstacle, and flocking tutorials with physical robots">
+  <title>Rendezvous and Flocking Tutorials · Christian Marowski</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/aaaakshat/cm-web-fonts@latest/fonts.css">
+  <link rel="stylesheet" href="stylesheet.css?v=20261028-research-pages">
+</head>
+<body>
+  <div class="page">
+    <header class="masthead">
+      <h1 class="name">Christian Marowski</h1>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">About Me</a>
+        <a href="index.html#publications">Publications</a>
+        <a href="research.html" aria-current="page">Research</a>
+        <a href="cv.html">CV</a>
+      </nav>
+    </header>
+    <hr>
+
+    <article class="project-detail">
+      <a class="project-back" href="research.html">← Back to Research</a>
+      <h2 class="project-heading">Multi-Robot Rendezvous and Flocking Tutorials</h2>
+      <p class="project-label">Robotics Tutorials · Multi-Robot Coordination</p>
+      <p class="project-intro">These tutorials demonstrate core multi-robot coordination behaviors with mobile robots, including rendezvous, fixed-slot formations, obstacle handling, and flocking with behavior switching. The examples connect camera-based localization to coordination and robot motion.</p>
+
+      <section class="story-section" aria-labelledby="tutorial-method">
+        <h3 id="tutorial-method">From tracking to coordination</h3>
+        <p>Overhead visual tracking estimates robot positions and headings. A coordination controller then determines target positions or relative motions, and the robots receive movement commands. The demonstrations below highlight different tasks built around this common workflow.</p>
+      </section>
+
+      <section class="story-section" aria-labelledby="tutorial-rendezvous">
+        <h3 id="tutorial-rendezvous">Rendezvous and formation</h3>
+        <p>The rendezvous demonstration shows robots coordinating their movement relative to one another. A related fixed-slot example assigns robots designated positions in a formation.</p>
+        <div class="detail-gallery">
+          <figure>
+            <h4>Rendezvous</h4>
+            <img src="website_images/rendezvous.gif" alt="Animated physical-robot rendezvous demonstration" loading="lazy">
+            <figcaption>Multi-robot rendezvous on the physical platform.</figcaption>
+          </figure>
+          <figure>
+            <h4>Fixed slots</h4>
+            <img src="website_images/fixed_slots.gif" alt="Animated fixed-slot multi-robot formation demonstration" loading="lazy">
+            <figcaption>Maintaining assigned positions in a formation.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="story-section" aria-labelledby="tutorial-flocking">
+        <h3 id="tutorial-flocking">Flocking and obstacle handling</h3>
+        <p>The remaining examples demonstrate obstacle-related motion and a flocking behavior with switching. They illustrate how coordinated movement can be adapted to different operating conditions.</p>
+        <div class="detail-gallery">
+          <figure>
+            <h4>Obstacle demonstration</h4>
+            <img src="website_images/obstacle_vid.gif" alt="Animated obstacle-handling robot demonstration" loading="lazy">
+            <figcaption>Obstacle-handling demonstration.</figcaption>
+          </figure>
+          <figure>
+            <h4>Flocking with switching</h4>
+            <img src="website_images/flocking_with_switch.gif" alt="Animated multi-robot flocking with switching behavior" loading="lazy">
+            <figcaption>Flocking demonstration with behavior switching.</figcaption>
+          </figure>
+        </div>
+      </section>
+    </article>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ongoing multi-robot reinforcement learning, simulation, and sim-to-real infrastructure work">
+  <title>Multi-Robot RL and Sim-to-Real Infrastructure · Christian Marowski</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/aaaakshat/cm-web-fonts@latest/fonts.css">
+  <link rel="stylesheet" href="stylesheet.css?v=20261028-research-pages">
+</head>
+<body>
+  <div class="page">
+    <header class="masthead">
+      <h1 class="name">Christian Marowski</h1>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">About Me</a>
+        <a href="index.html#publications">Publications</a>
+        <a href="research.html" aria-current="page">Research</a>
+        <a href="cv.html">CV</a>
+      </nav>
+    </header>
+    <hr>
+
+    <article class="project-detail">
+      <a class="project-back" href="research.html">← Back to Research</a>
+      <h2 class="project-heading">Multi-Robot Reinforcement Learning and Sim-to-Real Infrastructure</h2>
+      <p class="project-label">Ongoing Research · SMART Lab / Master's Thesis</p>
+      <p class="project-intro">This project develops a research framework for learning-based formation control with multiple mobile robots. Alongside the control policy, I am building the simulation, robot-modeling, localization, and evaluation infrastructure needed to compare learned and classical methods and move toward physical experiments.</p>
+
+      <section class="story-section" aria-labelledby="rl-simulation">
+        <h3 id="rl-simulation">Simulation environment</h3>
+        <p>Webots provides a controlled setting for multi-robot formation and navigation experiments. The simulation supports coordinated behaviors and evaluation scenarios involving changes to the team or disruptions to the formation.</p>
+        <figure class="demo-figure">
+          <img src="website_images/sim_ril.gif" alt="Animated demonstration of the multi-robot simulation" loading="lazy">
+          <figcaption>Multi-robot simulation demonstration.</figcaption>
+        </figure>
+      </section>
+
+      <section class="story-section" aria-labelledby="rl-models">
+        <h3 id="rl-models">Robot models and simulation infrastructure</h3>
+        <p>The infrastructure includes modeled mobile robots for testing control behavior and connecting simulated experiments with the physical platform. These views show the Hamster robot simulation model.</p>
+        <div class="detail-gallery">
+          <figure>
+            <a href="website_images/sim_hamster1.jpg" target="_blank" rel="noopener noreferrer"><img src="website_images/sim_hamster1.jpg" alt="Hamster robot simulation model, first view" loading="lazy"></a>
+            <figcaption>Simulated Hamster robot — view 1.</figcaption>
+          </figure>
+          <figure>
+            <a href="website_images/sim_hamster2.jpg" target="_blank" rel="noopener noreferrer"><img src="website_images/sim_hamster2.jpg" alt="Hamster robot simulation model, second view" loading="lazy"></a>
+            <figcaption>Simulated Hamster robot — view 2.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="story-section" aria-labelledby="rl-learning">
+        <h3 id="rl-learning">Learning-based formation control</h3>
+        <p>The research investigates graph-based representations and multi-agent reinforcement learning for maintaining formations and recovering after disruptions. The goal is to evaluate how policies use local and team-level information to coordinate under changing conditions.</p>
+      </section>
+
+      <section class="story-section" aria-labelledby="rl-physical">
+        <h3 id="rl-physical">Localization and physical integration</h3>
+        <p>A parallel part of the work concerns physical robot localization and actuation. Camera-based tracking and robot control interfaces form the basis for testing coordination methods beyond simulation and for comparing simulation and physical behaviors.</p>
+      </section>
+
+      <section class="story-section" aria-labelledby="rl-evaluation">
+        <h3 id="rl-evaluation">Evaluation plan</h3>
+        <p>Planned comparisons focus on formation accuracy, collision avoidance, and recovery following disruptions, with classical controllers as baselines. This project is ongoing; quantitative results are not yet presented here.</p>
+      </section>
+    </article>
+
+  </div>
+</body>
+</html>

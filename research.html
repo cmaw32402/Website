@@ -3,12 +3,64 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0; url=index.html#research">
-  <link rel="canonical" href="index.html#research">
-  <title>Research | Christian Marowski</title>
-  <script>location.replace("index.html#research");</script>
+  <meta name="description" content="Multi-robot research projects and robotics tutorials">
+  <title>Research · Christian Marowski</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/aaaakshat/cm-web-fonts@latest/fonts.css">
+  <link rel="stylesheet" href="stylesheet.css?v=20261028-research-pages">
 </head>
 <body>
-  <p><a href="index.html#research">Research</a></p>
+  <div class="page">
+    <header class="masthead">
+      <h1 class="name">Christian Marowski</h1>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">About Me</a>
+        <a href="index.html#publications">Publications</a>
+        <a href="research.html" aria-current="page">Research</a>
+        <a href="cv.html">CV</a>
+      </nav>
+    </header>
+    <hr>
+
+    <p class="page-intro">Research projects and technical demonstrations. For papers, see <a href="index.html#publications">Publications</a>.</p>
+    <hr>
+    <main class="research-list" aria-label="Research projects">
+      <article class="research-entry" id="gnn-flocking">
+        <div>
+          <h3><a href="gnn-flocking.html">GNN for Flocking Control in Multi-Robot Systems</a></h3>
+          <p class="tags">Class Project · Multi-Robot Systems</p>
+          <p>Trained a graph neural network through imitation learning to reproduce a classical flocking controller for six robots. Compared formation tracking, navigation time, and obstacle avoidance.</p>
+          <div class="links"><a href="gnn-flocking.html">Project details and demos</a></div>
+        </div>
+        <a class="research-image-link" href="gnn-flocking.html" aria-label="Open GNN flocking project">
+          <img class="research-thumbnail" src="website_images/gnn_s5_setup.png" alt="Webots flocking simulation setup" loading="lazy" width="170" height="115">
+        </a>
+      </article>
+
+      <article class="research-entry" id="rl-infrastructure">
+        <div>
+          <h3><a href="rl-infrastructure.html">Multi-Robot Reinforcement Learning and Sim-to-Real Infrastructure</a></h3>
+          <p class="tags">Ongoing Research · SMART Lab / Master's Thesis</p>
+          <p>Developing an end-to-end framework for learning-based multi-robot formation control, including Webots simulation, robot modeling, localization, and physical evaluation infrastructure.</p>
+          <div class="links"><a href="rl-infrastructure.html">Project details and simulation</a></div>
+        </div>
+        <a class="research-image-link" href="rl-infrastructure.html" aria-label="Open multi-robot RL research project">
+          <img class="research-thumbnail" src="website_images/sim_ril.gif" alt="Multi-robot learning simulation preview" loading="lazy" width="170" height="115">
+        </a>
+      </article>
+
+      <article class="research-entry" id="rendezvous-flocking">
+        <div>
+          <h3><a href="rendezvous-flocking.html">Multi-Robot Rendezvous and Flocking Tutorials</a></h3>
+          <p class="tags">Robotics Tutorials · Multi-Robot Coordination</p>
+          <p>Robot demonstrations of rendezvous, fixed-slot formation, obstacle handling, and flocking with switching behaviors using camera-based pose tracking.</p>
+          <div class="links"><a href="rendezvous-flocking.html">Tutorials and demonstrations</a></div>
+        </div>
+        <a class="research-image-link" href="rendezvous-flocking.html" aria-label="Open multi-robot coordination tutorials">
+          <img class="research-thumbnail" src="website_images/rendezvous.gif" alt="Physical multi-robot rendezvous demonstration" loading="lazy" width="170" height="115">
+        </a>
+      </article>
+    </main>
+
+  </div>
 </body>
 </html>
