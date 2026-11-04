@@ -165,5 +165,5 @@ figcaption, .architecture-notes { margin-top: 4px; font-size: 14px; color: var(-
   .research-thumbnail { height: 95px; }
   .detail-gallery { grid-template-columns: 1fr; }
 #about p {
-  font-size: 16px;
+  font-size: 14px;
 }
