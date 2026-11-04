@@ -165,3 +165,10 @@ figcaption, .architecture-notes { margin-top: 4px; font-size: 14px; color: var(-
   .research-thumbnail { height: 95px; }
   .detail-gallery { grid-template-columns: 1fr; }
 }
+.about-me h2 {
+  font-size: 20px;
+}
+
+.about-me p {
+  font-size: 16px;
+}
