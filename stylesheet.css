@@ -180,18 +180,36 @@ figcaption, .architecture-notes { margin-top: 4px; font-size: 14px; color: var(-
   font-size: 15px;
 }
 
+.cv-viewer-wrap {
+  width: min(92vw, 980px);
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
 .cv-viewer {
   display: block;
   width: 100%;
-  height: 85vh;
-  min-height: 650px;
+  height: 84vh;
+  min-height: 720px;
   border: 1px solid var(--rule);
   background: #fafafa;
 }
 
+@media (max-width: 900px) {
+  .cv-viewer-wrap {
+    width: min(94vw, 980px);
+  }
+}
+
 @media (max-width: 620px) {
+  .cv-viewer-wrap {
+    width: 100%;
+    margin-left: 0;
+    transform: none;
+  }
+
   .cv-viewer {
     height: 75vh;
-    min-height: 480px;
+    min-height: 500px;
   }
 }
