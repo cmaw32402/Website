@@ -1,3 +1,4 @@
+
 /* Academic portfolio, matched to the reference site layout. */
 :root {
   --ink: #1a1a1a;
@@ -6,6 +7,7 @@
   --accent: #7a1f2b;
   --bg: #ffffff;
 }
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
@@ -14,6 +16,7 @@ body {
   color: var(--ink);
   font: 400 17px/1.55 "Computer Modern Serif", "Latin Modern Roman", "CMU Serif", "Times New Roman", Times, serif;
 }
+
 .page { max-width: 780px; margin: 0 auto; padding: 28px 20px 60px; }
 
 .masthead { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 6px 24px; padding-bottom: 10px; }
@@ -159,11 +162,36 @@ figcaption, .architecture-notes { margin-top: 4px; font-size: 14px; color: var(-
 .detail-gallery img { display: block; width: 100%; height: auto; border: 1px solid #e3e3e3; background: #fafafa; }
 .detail-gallery h4 { margin: 0 0 6px; font-size: 16px; }
 .detail-gallery figcaption { font-size: 14px; color: var(--muted); margin-top: 4px; }
+
 @media (max-width: 620px) {
   .research-entry { grid-template-columns: minmax(0, 1fr) 115px; gap: 12px; }
   .research-image-link, .research-thumbnail { width: 115px; }
   .research-thumbnail { height: 95px; }
   .detail-gallery { grid-template-columns: 1fr; }
-#about p {
-  font-size: 14px;
+
+  #about p {
+    font-size: 14px;
+  }
+}
+
+/* Embedded CV viewer */
+.cv-actions {
+  margin: 8px 0 16px;
+  font-size: 15px;
+}
+
+.cv-viewer {
+  display: block;
+  width: 100%;
+  height: 85vh;
+  min-height: 650px;
+  border: 1px solid var(--rule);
+  background: #fafafa;
+}
+
+@media (max-width: 620px) {
+  .cv-viewer {
+    height: 75vh;
+    min-height: 480px;
+  }
 }
