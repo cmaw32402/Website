@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,11 +26,11 @@
       <a class="project-back" href="research.html">← Back to Research</a>
       <h2 class="project-heading">Multi-Robot Reinforcement Learning and Sim-to-Real Infrastructure</h2>
       <p class="project-label">Ongoing Research · SMART Lab / Master's Thesis</p>
-      <p class="project-intro">This project develops a simulation-to-real research framework for multi-robot formation control and flocking using Hamster S robots. The work combines physical robot modeling, vision-based localization, and reinforcement learning infrastructure to investigate how robot teams can maintain coordination and recover from disruptions.</p>
+      <p class="project-intro">My master's research investigates how multi-robot teams can maintain formation and recover from disruptions using reinforcement learning. The project involves developing a simulation-to-real framework with Hamster S robots, providing a platform for training coordination policies in simulation and evaluating their behavior on physical hardware.</p>
 
       <section class="story-section" aria-labelledby="rl-simulation">
         <h3 id="rl-simulation">Simulation environment</h3>
-        <p>A Webots simulation environment supports repeatable multi-robot experiments with randomized initial configurations, navigation targets, and varying team sizes. The environment provides a controlled setting for developing and evaluating coordination policies, including scenarios involving changes in team composition and robot behavior.</p>
+        <p>I developed a multi-robot environment in Webots to support training and repeatable experiments. Robot starting positions and navigation targets can be randomized between episodes, while the number of participating robots can be varied to study different team configurations. This flexibility allows coordination policies to be evaluated beyond a single predefined scenario.</p>
         <figure class="demo-figure">
           <img src="website_images/sim_ril.gif" alt="Animated demonstration of the multi-robot simulation" loading="lazy">
           <figcaption>Multi-robot simulation demonstration.</figcaption>
@@ -37,8 +38,8 @@
       </section>
 
       <section class="story-section" aria-labelledby="rl-models">
-        <h3 id="rl-models">Robot models and simulation infrastructure</h3>
-        <p>Custom Hamster S models were developed in Webots using measured physical dimensions and wheel geometry. The models reproduce the robots' differential-drive configuration and support controlled evaluation of coordination policies in simulation prior to physical deployment.</p>
+        <h3 id="rl-models">Robot modeling</h3>
+        <p>To support eventual deployment on physical robots, I created custom Hamster S models using measurements of the actual hardware. Their geometry and differential-drive motion are represented in Webots, allowing controllers to be developed with the physical platform's movement constraints in mind. These models also provide a consistent basis for comparing behavior between simulation and real-world experiments.</p>
         <div class="detail-gallery">
           <figure>
             <a href="website_images/sim_hamster1.jpg" target="_blank" rel="noopener noreferrer"><img src="website_images/sim_hamster1.jpg" alt="Hamster robot simulation model, first view" loading="lazy"></a>
@@ -53,19 +54,19 @@
 
       <section class="story-section" aria-labelledby="rl-learning">
         <h3 id="rl-learning">Learning-based formation control</h3>
-        <p>The reinforcement learning infrastructure supports episodic training with configurable reward functions and interchangeable network architectures, allowing different learning approaches to be tested within the same simulation framework.</p>
-        <p>The research focuses on graph-based multi-agent policies for maintaining formations and coordinated flocking under disruptions, including robot failures or impaired mobility, robots joining or leaving the team, and unexpected changes in position. The goal is to learn policies that can adapt to these changes and restore coordinated behavior rather than relying on fixed team configurations.</p>
+        <p>The learning framework is designed to support graph-based reinforcement learning, where robots are represented as nodes and their relationships are used to inform control decisions. Training takes place over repeated episodes, with configurable reward functions and network architectures for experimenting with different approaches.</p>
+        <p>A central question is whether learned policies can handle situations that challenge conventional formation controllers. For example, if a robot becomes immobilized or is unexpectedly displaced, the remaining robots may need to reorganize to restore coordination. I am particularly interested in whether policies trained across different team configurations can generalize to changes in team size without requiring a controller designed for each configuration.</p>
       </section>
 
       <section class="story-section" aria-labelledby="rl-physical">
         <h3 id="rl-physical">Localization and physical integration</h3>
-        <p>Physical robot localization uses overhead camera tracking and ArUco markers to estimate robot poses. Camera calibration and lens undistortion address optical distortion, while homography-based pixel-to-world mapping transforms image detections into arena coordinates and accounts for perspective effects. Improving robustness to noisy detections remains an ongoing focus.</p>
-        <p>This infrastructure supports the eventual deployment of simulated controllers on physical Hamster S robots and comparison of their behavior across environments.</p>
+        <p>Testing these policies on real robots requires reliable position feedback. An overhead camera tracks ArUco markers attached to the Hamster S robots to estimate their positions and orientations. Camera calibration and lens undistortion help reduce measurement errors, while homography-based mapping relates image coordinates to positions in the physical arena.</p>
+        <p>This tracking system provides the foundation for transferring controllers from Webots to physical experiments. Improving localization reliability is an important part of this process, particularly when camera noise or missed detections affect the feedback available to the controller.</p>
       </section>
 
       <section class="story-section" aria-labelledby="rl-evaluation">
         <h3 id="rl-evaluation">Evaluation plan</h3>
-        <p>Planned evaluations compare learned policies against classical formation controllers, focusing on formation accuracy, collision avoidance, scalability across team sizes, and recovery following disruptions. Physical experiments will also be used to examine differences between simulated and real robot behavior. The research is ongoing, and quantitative results are not yet presented.</p>
+        <p>The planned experiments will compare learned policies with classical formation controllers under both normal and disrupted operating conditions. Of particular interest is how quickly a team can recover after losing a robot or experiencing an unexpected change in formation. Evaluation will also consider formation accuracy, collision avoidance, and performance across different team sizes. Physical testing will help determine how well behavior learned in simulation transfers to the real robots. The research is ongoing, and quantitative results are not yet available.</p>
       </section>
     </article>
 
