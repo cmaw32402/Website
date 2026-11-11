@@ -32,7 +32,7 @@
 
         <div class="section-body">
           <h3 id="simulation-title">Simulation Environment and Baseline Controller</h3>
-          <p>Six E-puck robots navigated a square waypoint route through narrow obstacle passages in Webots. A classical Laplacian controller served as both the baseline and expert policy, combining formation maintenance, waypoint navigation, and artificial-potential-field obstacle avoidance.</p>
+          <p>Six E-puck robots navigated a square waypoint route through narrow obstacle passages in Webots. A classical Laplacian controller served as both the baseline and expert policy.</p>
           <figure class="setup-figure">
             <a href="website_images/gnn_s5_setup.png" target="_blank" rel="noopener noreferrer" aria-label="Open simulation setup image">
               <img src="website_images/gnn_s5_setup.png" alt="Square waypoint route with narrow obstacle passages in the Webots arena" loading="lazy">
@@ -54,7 +54,7 @@
 
         <div class="section-body">
           <h3 id="network-title">GNN architecture</h3>
-          <p>Each robot is a node, with edges describing neighboring robots. The model encodes robot features, exchanges information across connected neighbors, updates the node representations, and outputs a two-dimensional control vector for every robot.</p>
+          <p>Each robot is a node, with edges describing neighboring robots. The model encodes robot features and exchanges information across connected neighbors. The output is a two-dimensional control vector for every robot.</p>
 
           <figure class="architecture" aria-labelledby="architecture-caption">
             <div class="architecture-label">Model pipeline</div>
@@ -147,7 +147,7 @@
               <figcaption>GNN controller: formation error over time.</figcaption>
             </figure>
           </div>
-          <p class="result-takeaway">The evaluation was limited to six simulated robots, approximately 4,000 training samples, and a single environment. Generalization to different team sizes, environments, and physical robot platforms remains untested.</p>
+          <p class="result-takeaway">The evaluation was limited to six simulated robots and a single environment. Generalization to different team sizes, environments, and physical robot platforms remains untested.</p>
         </div>
       </section>
     </article>
